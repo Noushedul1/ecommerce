@@ -26,6 +26,7 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/','index')->name('dashboard');
     Route::get('/contact_us','contactUs')->name('contact_us');
     Route::get('/product_details','productDetails')->name('product_details');
+    Route::get('/category_page','categoryPage')->name('category_page');
 });
 
 Route::middleware('auth')->group(function () {

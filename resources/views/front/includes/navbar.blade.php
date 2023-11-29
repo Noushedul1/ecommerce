@@ -95,6 +95,9 @@
                                     </ul>
                                 </li>
                                 <li><a href="about-us.html">ABOUT</a></li>
+                                @if (Route::has('category_page'))
+                                <li><a href="{{ route('category_page') }}">Category Page</a></li>
+                                @endif
                                 @if (Route::has('contact_us'))
                                 <li><a href="{{ route('contact_us') }}">CONTACT US</a></li>
                                 @endif

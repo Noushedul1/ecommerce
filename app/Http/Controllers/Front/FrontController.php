@@ -13,6 +13,9 @@ class FrontController extends Controller
     public function productDetails() {
         return view('front.product_details.product_details');
     }
+    public function categoryPage() {
+        return view('front.category_page.category_page');
+    }
     public function contactUs(){
         return view('front.contact_us.contact_us');
     }
