@@ -85,6 +85,9 @@
                                     <ul class="sub-menu-style">
                                         <li><a href="about-us.html">about us </a></li>
                                         <li><a href="cart.html">cart page</a></li>
+                                        @if (Route::has('category_page'))
+                                        <li><a href="{{ route('category_page') }}">Category Page</a></li>
+                                        @endif
                                         <li><a href="checkout.html">checkout </a></li>
                                         <li><a href="my-account.html">my account</a></li>
                                         <li><a href="wishlist.html">wishlist </a></li>
@@ -95,9 +98,6 @@
                                     </ul>
                                 </li>
                                 <li><a href="about-us.html">ABOUT</a></li>
-                                @if (Route::has('category_page'))
-                                <li><a href="{{ route('category_page') }}">Category Page</a></li>
-                                @endif
                                 @if (Route::has('contact_us'))
                                 <li><a href="{{ route('contact_us') }}">CONTACT US</a></li>
                                 @endif
