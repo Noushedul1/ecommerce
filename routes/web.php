@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Front\FrontController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,19 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
+// start front
 Route::get('/admin/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('admin.dashboard');
+})->middleware(['auth'])->name('admin.dashboard');
 
 require __DIR__.'/auth.php';
-
-Route::get('/dashboard', function () {
-    return view('front.dashboard');
-})->middleware(['front'])->name('dashboard');
+// end front
+// start backend
+Route::controller(FrontController::class)->group(function(){
+    Route::get('/','index')->name('dashboard');
+    Route::get('/contact_us','contactUs')->name('contact_us');
+    Route::get('/product_details','productDetails')->name('product_details');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -35,3 +35,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/front_auth.php';
+// end backend
