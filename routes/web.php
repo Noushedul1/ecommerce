@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Front\FrontController;
 
 /*
@@ -15,9 +17,19 @@ use App\Http\Controllers\Front\FrontController;
 |
 */
 // start front
-Route::get('/admin/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
+    Route::controller(AdminController::class)->group(function(){
+        Route::get('/dashboard','index')->name('dashboard');
+    });
+    Route::controller(CategoryController::class)->group(function(){
+        Route::get('/category/index','index')->name('category.index');
+        Route::get('/category/create','create')->name('category.create');
+        Route::post('/category/store','store')->name('category.store');
+        Route::get('/category/edit/{category:category_slug}','edit')->name('category.edit');
+        Route::put('/category/update/{category:category_slug}','update')->name('category.update');
+        Route::delete('/category/destroy/{category:category_slug}','destroy')->name('category.destroy');
+    });
+});
 
 require __DIR__.'/auth.php';
 // end front

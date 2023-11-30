@@ -19,13 +19,16 @@
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
                     <span class="nav-label">Category</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
+                        @if (Route::has('admin.category.create'))
                         <li>
-                            <a href="">Store</a>
+                            <a href="{{ route('admin.category.create') }}">Store</a>
                         </li>
+                        @endif
+                        @if (Route::has('admin.category.index'))
                         <li>
-                            <a href="">Manage</a>
+                            <a href="{{ route('admin.category.index') }}">Manage</a>
                         </li>
-
+                        @endif
                     </ul>
             </li>
             <li>

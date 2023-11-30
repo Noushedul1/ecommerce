@@ -1,6 +1,10 @@
-@extends('admin.master')
-
-@section('body')
+<x-app-layout>
+    @section('admin_title','Category')
+    @push('admin_link')
+    <!-- include summernote css/js -->
+    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+    @endpush
+    @section('admin_content')
     <section class="py-5">
         <div class="container">
             <div class="row justify-content-center">
@@ -11,24 +15,21 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="{{ route('new-category') }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.category.store') }}" method="post">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Category Name :</label>
                                     <div class="col-md-8">
-                                        <input type="text" name="name" class="form-control" />
+                                        <input type="text" name="name" class="form-control @error('name')is-invalid @enderror" />
+                                        @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Category Description :</label>
                                     <div class="col-md-8">
-                                        <textarea name="description" class="form-control" id="" cols="30" rows="10"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group row">
-                                    <label for="" class="col-md-4 text-right">Category Image :</label>
-                                    <div class="col-md-8">
-                                        <input type="file" name="image" class="form-control-file" />
+                                        <textarea name="description" class="form-control" id="categorySummerNote" cols="30" rows="10"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -51,4 +52,14 @@
             </div>
         </div>
     </section>
-@endsection
+    @push('admin_script')
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#categorySummerNote').summernote();
+        });
+    </script>
+    @endpush
+    @endsection
+</x-app-layout>
+

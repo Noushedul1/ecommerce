@@ -15,9 +15,38 @@
 <script src="{{ asset('admin') }}/assets/js/scripts/dashboard_1_demo.js" type="text/javascript"></script>
 <script src="{{ asset('admin') }}/assets/vendors/DataTables/datatables.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
 <script type="text/javascript">
+// start for toastr
+    @if (Session::has('message'))
+    var type = "{{ Session::get('alert-type','success') }}";
+    switch(type){
+        case 'success':
+            toastr.options = {
+                'progressBar': true,
+                'closeBar': true
+            }
+            toastr.success("{{ Session::get('message') }}",'Success',{timeOut: 2000});
+            break;
+        case 'info':
+            toastr.options = {
+                'progressBar':true,
+                'closeBar':true
+            }
+            toastr.info("{{ Session::get('message') }}",'Info',{timeOut: 2000});
+            break;
+        case 'error':
+            toastr.options = {
+                'progressBar':true,
+                'closeBar':true
+            }
+            toastr.error("{{ Session::get('message') }}",'Info',{timeOut: 2000});
+            break;
+    }
+    @endif
+// end for toastr
     $(function() {
         $('#example-table').DataTable({
             pageLength: 10,
@@ -32,3 +61,4 @@
         });
     })
 </script>
+@stack('admin_script')

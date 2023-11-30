@@ -153,14 +153,7 @@
 
 <!-- END PAGA BACKDROPS-->
 @include('includes.footer')
-
-@if(Session::has('message'))
-    <script>
-        $(document).ready(function () {
-            toastr.success('{{ Session::get('message') }}');
-        })
-    </script>
-@endif
+    
 </body>
 
 </html>
