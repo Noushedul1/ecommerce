@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Front\FrontController;
+use App\Http\Controllers\SubCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +22,21 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::controller(AdminController::class)->group(function(){
         Route::get('/dashboard','index')->name('dashboard');
     });
-    Route::controller(CategoryController::class)->group(function(){
-        Route::get('/category/index','index')->name('category.index');
-        Route::get('/category/create','create')->name('category.create');
-        Route::post('/category/store','store')->name('category.store');
-        Route::get('/category/edit/{category:category_slug}','edit')->name('category.edit');
-        Route::put('/category/update/{category:category_slug}','update')->name('category.update');
-        Route::delete('/category/destroy/{category:category_slug}','destroy')->name('category.destroy');
+    Route::controller(CategoryController::class)->prefix('category')->name('category.')->group(function(){
+        Route::get('/index','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{category:category_slug}','edit')->name('edit');
+        Route::put('/update/{category:category_slug}','update')->name('update');
+        Route::delete('/destroy/{category:category_slug}','destroy')->name('destroy');
+    });
+    Route::controller(SubCategoryController::class)->prefix('subcategory')->name('subcategory.')->group(function(){
+        Route::get('/index','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{subcategory:subcategory_slug}','edit')->name('edit');
+        Route::put('/update/{subcategory:subcategory_slug}','update')->name('update');
+        Route::delete('/destroy/{subcategory:subcategory_slug}','destroy')->name('destroy');
     });
 });
 

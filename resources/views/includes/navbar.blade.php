@@ -35,56 +35,18 @@
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
                     <span class="nav-label">Sub Category</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
+                        @if (Route::has('admin.subcategory.create'))
                         <li>
-                            <a href="colors.html">Colors</a>
+                            <a href="{{ route('admin.subcategory.create') }}">Store</a>
                         </li>
+                        @endif
+                        @if (Route::has('admin.subcategory.index'))
                         <li>
-                            <a href="typography.html">Typography</a>
+                            <a href="{{ route('admin.subcategory.index') }}">Manage</a>
                         </li>
-
+                        @endif
                     </ul>
             </li>
-            <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
-                    <span class="nav-label">Brand</span><i class="fa fa-angle-left arrow"></i></a>
-                    <ul class="nav-2-level collapse">
-                        <li>
-                            <a href="colors.html">Colors</a>
-                        </li>
-                        <li>
-                            <a href="typography.html">Typography</a>
-                        </li>
-
-                    </ul>
-            </li>
-            <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
-                    <span class="nav-label">Unit</span><i class="fa fa-angle-left arrow"></i></a>
-                    <ul class="nav-2-level collapse">
-                        <li>
-                            <a href="colors.html">Colors</a>
-                        </li>
-                        <li>
-                            <a href="typography.html">Typography</a>
-                        </li>
-
-                    </ul>
-            </li>
-            <li>
-                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
-                    <span class="nav-label">Product</span><i class="fa fa-angle-left arrow"></i></a>
-                    <ul class="nav-2-level collapse">
-                        <li>
-                            <a href="colors.html">Colors</a>
-                        </li>
-                        <li>
-                            <a href="typography.html">Typography</a>
-                        </li>
-
-                    </ul>
-            </li>
-
-
         </ul>
     </div>
 </nav>

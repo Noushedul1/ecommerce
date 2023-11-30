@@ -36,7 +36,7 @@ class CategoryController extends Controller
             'description'=>$request->description,
             'status'=>$request->status
         ]);
-        $notification = array('alert-type'=>'error','message'=>'Category Created Successfully');
+        $notification = array('alert-type'=>'success','message'=>'Category Created Successfully');
         return redirect()->back()->with($notification);
     }
 
