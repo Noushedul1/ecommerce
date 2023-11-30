@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UnitController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
@@ -17,7 +18,7 @@ use App\Http\Controllers\SubCategoryController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-// start front
+// start admin
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::controller(AdminController::class)->group(function(){
         Route::get('/dashboard','index')->name('dashboard');
@@ -38,11 +39,19 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::put('/update/{subcategory:subcategory_slug}','update')->name('update');
         Route::delete('/destroy/{subcategory:subcategory_slug}','destroy')->name('destroy');
     });
+    Route::controller(UnitController::class)->prefix('unit')->name('unit.')->group(function(){
+        Route::get('/index','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{unit:unit_slug}','edit')->name('edit');
+        Route::put('/update/{unit:unit_slug}','update')->name('update');
+        Route::delete('/destroy/{unit:unit_slug}','destroy')->name('destroy');
+    });
 });
 
 require __DIR__.'/auth.php';
-// end front
-// start backend
+// end admin
+// start front
 Route::controller(FrontController::class)->group(function(){
     Route::get('/','index')->name('dashboard');
     Route::get('/contact_us','contactUs')->name('contact_us');
@@ -57,4 +66,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/front_auth.php';
-// end backend
+// end front
