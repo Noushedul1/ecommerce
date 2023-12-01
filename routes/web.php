@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Front\FrontController;
@@ -46,6 +47,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::get('/edit/{unit:unit_slug}','edit')->name('edit');
         Route::put('/update/{unit:unit_slug}','update')->name('update');
         Route::delete('/destroy/{unit:unit_slug}','destroy')->name('destroy');
+    });
+    Route::controller(BrandController::class)->prefix('brand')->name('brand.')->group(function(){
+        Route::get('/index','index')->name('index');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/edit/{brand:brand_slug}','edit')->name('edit');
+        Route::put('/update/{brand:brand_slug}','update')->name('update');
+        Route::delete('/destroy/{brand:brand_slug}','destroy')->name('destroy');
     });
 });
 
