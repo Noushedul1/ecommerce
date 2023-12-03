@@ -15,8 +15,14 @@
                         </div>
                         <div class="card-body">
 
-                            <form action="" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('admin.product.create') }}" method="post" enctype="multipart/form-data">
                                 @csrf
+                                <div class="form-group row">
+                                    <label for="" class="col-md-4 text-right">Product Name :</label>
+                                    <div class="col-md-8">
+                                        <input type="text" name="name" class="form-control">
+                                    </div>
+                                </div>
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Category Name :</label>
                                     <div class="col-md-8">
@@ -42,7 +48,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Brand Name :</label>
                                     <div class="col-md-8">
-                                        <select name="brands_id" id="" class="form-control">
+                                        <select name="brand_id" id="" class="form-control">
                                             <option value="" selected disabled>Select Brand</option>
                                             @foreach ($brands as $brand)
                                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>

@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Unit;
 use App\Models\Brand;
+use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -24,5 +26,29 @@ class ProductController extends Controller
         return response()->json([
             'subcategories'=>$subcategories
         ]);
+    }
+    public function create(Request $request) {
+        // return $request->all();
+        $product = new Product();
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $fileNameTosave = rand().".".$extension;
+            Image::make($image)->resize(300,300)->save($image->move('admin/images/product_images/',$fileNameTosave));
+            $product->image = $fileNameTosave;
+        }
+        $product->name = $request->name;
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->brand_id = $request->brand_id;
+        $product->unit_id = $request->unit_id;
+        $product->regular_price = $request->regular_price;
+        $product->selling_price = $request->selling_price;
+        $product->short_description = $request->short_description;
+        $product->long_description = $request->long_description;
+        $product->status = $request->status;
+        $product->save();
+        $notification = array('alert_type'=>'success','message'=>'Product Successfully saved');
+        return redirect()->back()->with($notification);
     }
 }
