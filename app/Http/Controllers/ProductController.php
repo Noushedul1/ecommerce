@@ -6,6 +6,7 @@ use App\Models\Unit;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Subimage;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -48,6 +49,18 @@ class ProductController extends Controller
         $product->long_description = $request->long_description;
         $product->status = $request->status;
         $product->save();
+        if($request->hasFile('images')) {
+            $files = $request->file('images');
+            foreach($files as $file){
+                $extension = $file->getClientOriginalExtension();
+                $fileNameTosave = rand().".".$extension;
+                Image::make($file)->resize(300,300)->save($file->move('admin/images/producsMore_images/',$fileNameTosave));
+                $subimage = new Subimage();
+                $subimage->images = $fileNameTosave;
+                $subimage->product_id = $product->id;
+                $subimage->save();
+            }
+        }
         $notification = array('alert_type'=>'success','message'=>'Product Successfully saved');
         return redirect()->back()->with($notification);
     }
