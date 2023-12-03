@@ -6,7 +6,7 @@ use App\Models\Category;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class SubCategory extends Model
+class Subcategory extends Model
 {
     use HasFactory;
     protected $fillable = ['category_id','name','subcategory_slug','description','status'];

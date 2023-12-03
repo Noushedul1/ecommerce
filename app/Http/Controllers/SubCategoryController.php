@@ -31,7 +31,7 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=>'required|unique:sub_categories,name',
+            'name'=>'required|unique:subcategories,name',
         ]);
         Subcategory::create([
             'category_id'=>$request->category_id,
@@ -67,7 +67,7 @@ class SubCategoryController extends Controller
     public function update(Request $request,Subcategory $subcategory)
     {
         $request->validate([
-            'name'=>'required|unique:sub_categories,name',
+            'name'=>'required|unique:subcategories,name',
         ]);
         $subcategory->update([
             'category_id'=>$request->category_id,
