@@ -35,7 +35,8 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Brand Image :</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="image" class="from-control">
+                                        <input type="file" onchange="previewImage(this)" name="image" class="from-control">
+                                        <img src="" id="prevImage" alt="" height="100" width="100">
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -64,6 +65,17 @@
         $(document).ready(function() {
             $('#brandSummerNote').summernote();
         });
+        $('#prevImage').hide();
+        function previewImage(inputVal) {
+            if(inputVal.files && inputVal.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#prevImage').show();
+                    $('#prevImage').attr('src',e.target.result);
+                }
+                reader.readAsDataURL(inputVal.files[0]);
+            }
+        }
     </script>
     @endpush
     @endsection

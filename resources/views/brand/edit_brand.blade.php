@@ -38,7 +38,8 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Brand Image :</label>
                                     <div class="col-md-8">
-                                        <input type="file" name="image" class="form-control">
+                                        <input onchange="previewImage(this)" type="file" name="image" class="form-control">
+                                        <img src="" alt="" id="prevImage" height="100" width="100">
                                         <img src="{{ asset('admin/images/brand_images/'.$brand->image) }}" alt="{{ $brand->brand_slug }}" height="100" width="100">
                                     </div>
                                 </div>
@@ -68,6 +69,15 @@
         $(document).ready(function() {
             $('#brandeditSummerNote').summernote();
         });
+        function previewImage(inputVal){
+            if(inputVal.files && inputVal.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e){
+                    $('#prevImage').attr('src',e.target.result);
+                }
+                reader.readAsDataURL(inputVal.files[0]);
+            }
+        }
     </script>
     @endpush
     @endsection
