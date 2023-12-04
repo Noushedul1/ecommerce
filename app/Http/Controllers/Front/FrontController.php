@@ -13,8 +13,10 @@ class FrontController extends Controller
     public function index(){
         return view('front.dashboard');
     }
-    public function productDetails() {
-        return view('front.product_details.product_details');
+    public function productDetails($id) {
+        $product = Product::find($id);
+        $reladedProducts = Product::where('category_id',$product->category_id)->take(4)->get();
+        return view('front.product_details.product_details',compact('product','reladedProducts'));
     }
     public function categoryPage($id) {
         $products = Product::where('category_id',$id)->where('status',1)->get();

@@ -79,7 +79,6 @@
                                         <li><a href="wishlist.html">wishlist </a></li>
                                         <li><a href="compare.html">compare </a></li>
                                         <li><a href="contact-us.html">contact us </a></li>
-                                        <li><a href="{{ route('product_details') }}">Product Details</a></li>
                                         <li><a href="login-register.html">login / register </a></li>
                                     </ul>
                                 </li>
