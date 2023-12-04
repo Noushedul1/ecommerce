@@ -26,10 +26,15 @@ class FrontController extends Controller
         $subcategory = Subcategory::find($id);
         return view('front.subcategory_page.subcategory_page',compact('products','subcategory'));
     }
-    public function getProductInfo($id) {
-        return response()->json([
-            'id'=>$id
-        ]);
+    public function getProductInfo() {
+        // return json_decode($_GET['id']);
+        $product = Product::find($_GET['id']);
+        $product->hit_count = $product->hit_count + 1;
+        $product->save();
+        return json_decode($product); //direct
+        // return response()->json([
+        //     'product'=>$product
+        // ]);
     }
     public function contactUs(){
         return view('front.contact_us.contact_us');

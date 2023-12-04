@@ -18,15 +18,15 @@
                         <div class="row gx-0">
                             <div class="col-lg-5 col-md-5 col-12">
                                 <div class="modal-img-wrap">
-                                    <img src="{{ asset('/front') }}/assets/images/product/quickview.png" alt="">
+                                    <img id="modalImage" src="{{ asset('/front') }}/assets/images/product/quickview.png" alt="">
                                 </div>
                             </div>
                             <div class="col-lg-7 col-md-7 col-12">
                                 <div class="product-details-content quickview-content">
-                                    <h2>New Modern Chair</h2>
+                                    <h2 id="modalName">New Modern Chair</h2>
                                     <div class="product-details-price">
-                                        <span class="old-price">$25.89 </span>
-                                        <span class="new-price">$20.25</span>
+                                        <span class="old-price" id="modalOldPrice">$25.89 </span>
+                                        <span class="new-price" id="modalNewPrice">$20.25</span>
                                     </div>
                                     <div class="product-details-review">
                                         <div class="product-rating">
@@ -38,15 +38,15 @@
                                         </div>
                                         <span>( 1 Customer Review )</span>
                                     </div>
-                                    <div class="product-color product-color-active product-details-color">
+                                    {{-- <div class="product-color product-color-active product-details-color">
                                         <span>Color :</span>
                                         <ul>
                                             <li><a title="Pink" class="pink" href="#">pink</a></li>
                                             <li><a title="Yellow" class="active yellow" href="#">yellow</a></li>
                                             <li><a title="Purple" class="purple" href="#">purple</a></li>
                                         </ul>
-                                    </div>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare tincidunt neque vel semper. Cras placerat enim sed nisl mattis eleifend.</p>
+                                    </div> --}}
+                                    <p id="modalShortDescriptioin">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ornare tincidunt neque vel semper. Cras placerat enim sed nisl mattis eleifend.</p>
                                     <div class="product-details-action-wrap">
                                         <div class="product-quality">
                                             <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">

@@ -270,12 +270,20 @@
             $(document).on('click','.showModal',function(){
                 var productId = $(this).data('id');
                 // alert(productId);
+                var baseUrl = {!! json_encode(url('/')) !!} ;
+                // alert(baseUrl);
                 $.ajax({
                     method: "GET",
-                    url: "/get-product-info-for-modal"+productId,
+                    url: "/get-product-info-for-modal",
                     dataType: "JSON",
+                    data: {id:productId},
                     success: function(res) {
                         console.log(res);
+                        $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
+                        $('#modalOldPrice').text('BDT '+res.regular_price);
+                        $('#modalNewPrice').text('BDT '+res.selling_price);
+                        $('#modalShortDescription').text(res.short_description);
+                        $('#modalName').text(res.name);
                     },
                     error: function(err) {
                         console.log(err);
