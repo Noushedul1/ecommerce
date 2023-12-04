@@ -55,9 +55,9 @@
                                                     <td>{{  $product->regular_price  }}</td>
                                                     <td>{{ $product->status === 1 ? 'Active' : 'Inactive' }}</td>
                                                     <td>
-                                                        {{-- <a href="" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a> --}}
+                                                        <a href="{{ route('admin.product.edit',$product->product_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
 
-                                                        <a href="{{ route('admin.product.show',$product->product_slug) }}">
+                                                        <a href="{{ route('admin.product.show',$product->product_slug) }}" class="btn btn-sm btn-secondary">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
 

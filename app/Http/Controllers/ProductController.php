@@ -74,4 +74,12 @@ class ProductController extends Controller
     public function show(Product $product) {
         return view('product.show',compact('product'));
     }
+    public function edit(Product $product) {
+        $categories = Category::all();
+        $subcategories = Subcategory::all();
+        $brands = Brand::all();
+        $units = Unit::all();
+        return view('product.edit_product',
+        compact('product','categories','subcategories','brands','units'));
+    }
 }
