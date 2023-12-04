@@ -54,11 +54,11 @@
                                             <ul>
                                                 @foreach ($categories as $category)
                                                 <li>
-                                                    <a class="dropdown-title" href="#">{{ $category->name }}</a>
+                                                    <a class="dropdown-title" href="{{ route('category_page',$category->id) }}">{{ $category->name }}</a>
 
                                                     <ul>
                                                         @foreach ($category->subcategory as $subcategory)
-                                                        <li><a href="">{{ $subcategory->name }}</a></li>
+                                                        <li><a href="{{ route('subcategory_page',$subcategory->id) }}">{{ $subcategory->name }}</a></li>
                                                         @endforeach
                                                     </ul>
                                                 </li>
@@ -74,9 +74,6 @@
                                     <ul class="sub-menu-style">
                                         <li><a href="about-us.html">about us </a></li>
                                         <li><a href="cart.html">cart page</a></li>
-                                        @if (Route::has('category_page'))
-                                        <li><a href="{{ route('category_page') }}">Category Page</a></li>
-                                        @endif
                                         <li><a href="checkout.html">checkout </a></li>
                                         <li><a href="my-account.html">my account</a></li>
                                         <li><a href="wishlist.html">wishlist </a></li>

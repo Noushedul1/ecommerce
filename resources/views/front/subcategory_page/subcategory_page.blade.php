@@ -1,5 +1,5 @@
 <x-front-layout>
-    @section('front_title','Category Page')
+    @section('front_title','Sub Category Page')
     @section('front_content')
     <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
         <div class="container">
@@ -8,7 +8,7 @@
                 <ul data-aos="fade-up" data-aos-delay="400">
                     <li><a href="{{ url('/') }}">Home</a></li>
                     <li><i class="ti-angle-right"></i></li>
-                    <li>{{ $category->name }}</li>
+                    <li>{{ $subcategory->name }}</li>
                 </ul>
             </div>
         </div>
