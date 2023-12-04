@@ -60,7 +60,7 @@
                                                 </div>
                                                 <div class="product-action-wrap">
                                                     <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                    <button class="product-action-btn-1" id="showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button class="product-action-btn-1 showModal" id="showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="pe-7s-look"></i>
                                                     </button>
                                                 </div>
@@ -264,5 +264,26 @@
             </div>
         </div>
     </div>
+    @push('front_script')
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.showModal',function(){
+                var productId = $(this).data('id');
+                // alert(productId);
+                $.ajax({
+                    method: "GET",
+                    url: "/get-product-info-for-modal"+productId,
+                    dataType: "JSON",
+                    success: function(res) {
+                        console.log(res);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
+    @endpush
     @endsection
 </x-front-layout>

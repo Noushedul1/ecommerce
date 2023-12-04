@@ -22,4 +22,4 @@
     <script src="{{ asset('/front') }}/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="{{ asset('/front') }}/assets/js/main.js"></script>
-    @stack('admin_script')
+    @stack('front_script')

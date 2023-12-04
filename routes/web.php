@@ -75,6 +75,7 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/product_details','productDetails')->name('product_details');
     Route::get('/category_page/{id}','categoryPage')->name('category_page');
     Route::get('/subcategory_page/{id}','subcategoryPage')->name('subcategory_page');
+    Route::get('/get-product-info-for-modal/{id}','getProductInfo')->name('getProduct_Info');
 });
 
 Route::middleware('auth')->group(function () {
