@@ -15,8 +15,8 @@
                         </div>
                         <div class="card-body">
 
-                            {{-- <form action="{{ route('admin.product.store') }}" method="post" enctype="multipart/form-data"> --}}
-                                {{-- @csrf --}}
+                            <form action="{{ route('admin.product.update',$product->product_slug) }}" method="post" enctype="multipart/form-data">
+                                @csrf
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right">Product Name :</label>
                                     <div class="col-md-8">
@@ -120,7 +120,7 @@
                                 <div class="form-group row">
                                     <label for="" class="col-md-4 text-right"></label>
                                     <div class="col-md-8">
-                                        <input type="submit" value="New Product" class="btn btn-outline-success" />
+                                        <input type="submit" value="Update Product" class="btn btn-outline-success" />
                                     </div>
                                 </div>
                             </form>

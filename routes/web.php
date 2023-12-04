@@ -64,6 +64,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::post('/store','store')->name('store');
         Route::get('/show/{product:product_slug}','show')->name('show');
         Route::get('/edit/{product:product_slug}','edit')->name('edit');
+        Route::post('/update/{product:product_slug}','update')->name('update');
     });
 });
 

@@ -10,6 +10,7 @@ use App\Models\Subimage;
 use App\Models\Subcategory;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
@@ -81,5 +82,33 @@ class ProductController extends Controller
         $units = Unit::all();
         return view('product.edit_product',
         compact('product','categories','subcategories','brands','units'));
+    }
+    public function update(Request $request,Product $product) {
+        if($request->hasFile('image')) {
+            if(File::exists('admin/images/product_images/'.$product->image)){
+                File::delete('admin/images/product_images/'.$product->image);
+            }
+        }
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $extension = $image->getClientOriginalExtension();
+            $fileNameTosave = rand().".".$extension;
+            Image::make($image)->resize(300,300)->save($image->move('admin/images/product_images/',$fileNameTosave));
+            $product->image = $fileNameTosave;
+        }
+        $product->name = $request->name;
+        $product->product_slug = Str::slug($request->name);
+        $product->category_id = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->brand_id = $request->brand_id;
+        $product->unit_id = $request->unit_id;
+        $product->short_description = $request->short_description;
+        $product->long_description = $request->long_description;
+        $product->regular_price = $request->regular_price;
+        $product->selling_price = $request->selling_price;
+        $product->status = $request->status;
+        $product->save();
+        $notification = array('alert-type'=>'success','message'=>'Product successfully updated');
+        return redirect()->route('admin.product.index')->with($notification);
     }
 }
