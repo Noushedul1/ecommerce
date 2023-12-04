@@ -65,6 +65,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::get('/show/{product:product_slug}','show')->name('show');
         Route::get('/edit/{product:product_slug}','edit')->name('edit');
         Route::post('/update/{product:product_slug}','update')->name('update');
+        Route::delete('/destroy/{product:product_slug}','destroy')->name('destroy');
     });
 });
 

@@ -111,4 +111,16 @@ class ProductController extends Controller
         $notification = array('alert-type'=>'success','message'=>'Product successfully updated');
         return redirect()->route('admin.product.index')->with($notification);
     }
+    public function destroy(Product $product) {
+        if(File::exists('admin/images/product_images/'.$product->image)){
+            File::delete('admin/images/product_images/'.$product->image);
+        }
+        $subimages = Subimage::where('product_id',$product->id)->first();
+        if(File::exists('admin/images/producsMore_images/'.$subimages->images)){
+            File::delete('admin/images/producsMore_images/'.$subimages->images); //need to work 
+        }
+        $product->delete();
+        $notification = array('alert-type'=>'success','message'=>'Product successfully deleted');
+        return redirect()->route('admin.product.index')->with($notification);
+    }
 }
