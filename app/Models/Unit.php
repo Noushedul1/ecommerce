@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Unit extends Model
 {
@@ -11,5 +12,8 @@ class Unit extends Model
     protected $fillable = ['name','unit_slug','description','status'];
     public function getRouteKeyName() {
         return 'unit_slug';
+    }
+    public function product() {
+        return $this->hasMany(Product::class);
     }
 }

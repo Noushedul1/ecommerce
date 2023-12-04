@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
             $table->foreignId('unit_id')->constrained('units')->onDelete('cascade');
             $table->string('name');
+            $table->string('product_slug')->nullable();
             $table->string('code')->nullable();
             $table->float('regular_price',10,2)->nullable();
             $table->float('selling_price',10,2);

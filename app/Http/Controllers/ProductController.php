@@ -8,12 +8,23 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subimage;
 use App\Models\Subcategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
     public function index() {
+        $products = Product::with(['category','subcategory','brand','unit'])->get();
+        return view('product.product',compact('products'));
+    }
+    public function get_category_id($id) {
+        $subcategories = Subcategory::where('category_id',$id)->get();
+        return response()->json([
+            'subcategories'=>$subcategories
+        ]);
+    }
+    public function create() {
         $categories = Category::all();
         $subcategories = Subcategory::all();
         $brands = Brand::all();
@@ -22,13 +33,7 @@ class ProductController extends Controller
             compact('categories','subcategories','brands','units')
         );
     }
-    public function get_category_id($id) {
-        $subcategories = Subcategory::where('category_id',$id)->get();
-        return response()->json([
-            'subcategories'=>$subcategories
-        ]);
-    }
-    public function create(Request $request) {
+    public function store(Request $request) {
         // return $request->all();
         $product = new Product();
         if($request->hasFile('image')) {
@@ -39,6 +44,7 @@ class ProductController extends Controller
             $product->image = $fileNameTosave;
         }
         $product->name = $request->name;
+        $product->product_slug = Str::slug($request->name);
         $product->category_id = $request->category_id;
         $product->subcategory_id = $request->subcategory_id;
         $product->brand_id = $request->brand_id;
@@ -62,6 +68,10 @@ class ProductController extends Controller
             }
         }
         $notification = array('alert_type'=>'success','message'=>'Product Successfully saved');
-        return redirect()->back()->with($notification);
+        return redirect()->route('admin.product.index')->with($notification);
+    }
+
+    public function show(Product $product) {
+        return view('product.show',compact('product'));
     }
 }

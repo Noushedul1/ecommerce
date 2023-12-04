@@ -65,6 +65,22 @@
             </li>
             <li>
                 <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <span class="nav-label">Product</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-2-level collapse">
+                        @if (Route::has('admin.product.create'))
+                        <li>
+                            <a href="{{ route('admin.product.create') }}">Store</a>
+                        </li>
+                        @endif
+                        @if (Route::has('admin.product.index'))
+                        <li>
+                            <a href="{{ route('admin.product.index') }}">Manage</a>
+                        </li>
+                        @endif
+                    </ul>
+            </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
                     <span class="nav-label">Unit</span><i class="fa fa-angle-left arrow"></i></a>
                     <ul class="nav-2-level collapse">
                         @if (Route::has('admin.unit.create'))

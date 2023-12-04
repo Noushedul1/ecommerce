@@ -60,7 +60,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::controller(ProductController::class)->prefix('product')->name('product.')->group(function(){
         Route::get('/index','index')->name('index');
         Route::get('/get-category-id/{id}','get_category_id')->name('get_category_id');
-        Route::post('/create','create')->name('create');
+        Route::get('/create','create')->name('create');
+        Route::post('/store','store')->name('store');
+        Route::get('/show/{product:product_slug}','show')->name('show');
     });
 });
 
