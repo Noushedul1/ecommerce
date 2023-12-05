@@ -11,7 +11,10 @@ use App\Http\Controllers\Controller;
 class FrontController extends Controller
 {
     public function index(){
-        return view('front.dashboard');
+        $products = Product::where('status',1)->get();
+        $hotProducts = Product::orderBy('hit_count','DESC')->where('hit_count','>','5')->where('status',1)->get();
+        $bestSellingProducts = Product::orderBy('sells_count','DESC')->where('sells_count','>','0')->where('status',1)->get();
+        return view('front.dashboard',compact('products','hotProducts','bestSellingProducts'));
     }
     public function productDetails($id) {
         $product = Product::find($id);

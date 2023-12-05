@@ -175,20 +175,22 @@
                                     <li><a title="Purple" class="purple" href="#">purple</a></li>
                                 </ul>
                             </div> --}}
-                            <div class="product-details-action-wrap">
-                                <div class="product-quality">
-                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                            <form action="" method="post">
+                                <div class="product-details-action-wrap">
+                                    <div class="product-quality">
+                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                    </div>
+                                    <div class="single-product-cart btn-hover">
+                                        <a href="#">Add to cart</a>
+                                    </div>
+                                    <div class="single-product-wishlist">
+                                        <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                    </div>
+                                    <div class="single-product-compare">
+                                        <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
+                                    </div>
                                 </div>
-                                <div class="single-product-cart btn-hover">
-                                    <a href="#">Add to cart</a>
-                                </div>
-                                <div class="single-product-wishlist">
-                                    <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
-                                </div>
-                                <div class="single-product-compare">
-                                    <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
-                                </div>
-                            </div>
+                            </form>
                             <div class="product-details-meta">
                                 <ul>
                                     <li><span class="title">SKU:</span> Ch-256xl</li>

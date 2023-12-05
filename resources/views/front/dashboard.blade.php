@@ -164,18 +164,19 @@
             </div>
             <div class="product-slider-active-1 swiper-container">
                 <div class="swiper-wrapper">
+                    @foreach ($products as $product)
                     <div class="swiper-slide">
                         <div class="product-wrap" data-aos="fade-up" data-aos-delay="200">
                             <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
-                                    <img src="{{ asset('/front') }}/assets/images/product/product-1.png" alt="">
+                                <a href="{{ route('product_details',$product->id) }}">
+                                    <img src="{{ asset('admin/images/product_images/'.$product->image) }}" alt="{{ $product->product_slug }}">
                                 </a>
                                 <div class="product-badge badge-top badge-right badge-pink">
                                     <span>-10%</span>
                                 </div>
                                 <div class="product-action-wrap">
                                     <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <button class="product-action-btn-1 showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                         <i class="pe-7s-look"></i>
                                     </button>
                                 </div>
@@ -184,118 +185,15 @@
                                 </div>
                             </div>
                             <div class="product-content">
-                                <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
+                                <h3><a href="{{ route('product_details',$product->id) }}">{{ $product->name }}</a></h3>
                                 <div class="product-price">
-                                    <span class="old-price">$25.89 </span>
-                                    <span class="new-price">$20.25 </span>
+                                    <span class="old-price">BDT {{ $product->regular_price }} </span>
+                                    <span class="new-price">BDT {{ $product->selling_price }} </span>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="swiper-slide">
-                        <div class="product-wrap" data-aos="fade-up" data-aos-delay="400">
-                            <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
-                                    <img src="{{ asset('/front') }}/assets/images/product/product-2.png" alt="">
-                                </a>
-                                <div class="product-action-wrap">
-                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-look"></i>
-                                    </button>
-                                </div>
-                                <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
-                                <div class="product-price">
-                                    <span>$50.25 </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-wrap" data-aos="fade-up" data-aos-delay="600">
-                            <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
-                                    <img src="{{ asset('/front') }}/assets/images/product/product-3.png" alt="">
-                                </a>
-                                <div class="product-badge badge-top badge-right badge-pink">
-                                    <span>-10%</span>
-                                </div>
-                                <div class="product-action-wrap">
-                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-look"></i>
-                                    </button>
-                                </div>
-                                <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Easy Modern Chair</a></h3>
-                                <div class="product-price">
-                                    <span class="old-price">$45.00 </span>
-                                    <span class="new-price">$40.00 </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-wrap" data-aos="fade-up" data-aos-delay="800">
-                            <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
-                                    <img src="{{ asset('/front') }}/assets/images/product/product-4.png" alt="">
-                                </a>
-                                <div class="product-action-wrap">
-                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-look"></i>
-                                    </button>
-                                </div>
-                                <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">Stylish Swing Chair</a></h3>
-                                <div class="product-price">
-                                    <span>$30.25 </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide">
-                        <div class="product-wrap" data-aos="fade-up" data-aos-delay="1000">
-                            <div class="product-img img-zoom mb-25">
-                                <a href="product-details.html">
-                                    <img src="{{ asset('/front') }}/assets/images/product/product-2.png" alt="">
-                                </a>
-                                <div class="product-badge badge-top badge-right badge-pink">
-                                    <span>-10%</span>
-                                </div>
-                                <div class="product-action-wrap">
-                                    <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                    <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        <i class="pe-7s-look"></i>
-                                    </button>
-                                </div>
-                                <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-content">
-                                <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
-                                <div class="product-price">
-                                    <span class="old-price">$80.50 </span>
-                                    <span class="new-price">$75.25 </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="product-prev-1 product-nav-1" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-angle-left"></i></div>
                 <div class="product-next-1 product-nav-1" data-aos="fade-up" data-aos-delay="200"><i class="fa fa-angle-right"></i></div>
@@ -451,18 +349,19 @@
             <div class="tab-content jump">
                 <div id="pro-1" class="tab-pane active">
                     <div class="row">
+                        @foreach ($hotProducts as $hotProduct)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
                                 <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-5.png" alt="">
+                                    <a href="{{ route('product_details',$hotProduct->id) }}">
+                                        <img src="{{ asset('admin/images/product_images/'.$hotProduct->image) }}" alt="{{ $hotProduct->product_slug }}">
                                     </a>
                                     <div class="product-badge badge-top badge-right badge-pink">
                                         <span>-10%</span>
                                     </div>
                                     <div class="product-action-wrap">
                                         <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button class="product-action-btn-1 showModal" data-id="{{ $hotProduct->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                             <i class="pe-7s-look"></i>
                                         </button>
                                     </div>
@@ -471,203 +370,25 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Interior moderno render</a></h3>
+                                    <h3><a href="{{ route('product_details',$hotProduct->id) }}">{{ $hotProduct->name }}</a></h3>
                                     <div class="product-price">
-                                        <span class="old-price">$25.89 </span>
-                                        <span class="new-price">$20.25 </span>
+                                        <span class="old-price">BDT {{ $hotProduct->regular_price }} </span>
+                                        <span class="new-price">BDT {{ $hotProduct->selling_price }} </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="400">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-6.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Stylish Dining Chair</a></h3>
-                                    <div class="product-price">
-                                        <span>$50.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="600">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-7.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Round Standard Chair</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$45.00 </span>
-                                        <span class="new-price">$40.00 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="800">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-4.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Stylish Swing Chair</a></h3>
-                                    <div class="product-price">
-                                        <span>$30.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="200">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-8.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Modern Swivel Chair</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$25.89 </span>
-                                        <span class="new-price">$20.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="400">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-2.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
-                                    <div class="product-price">
-                                        <span>$50.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="600">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-3.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Easy Modern Chair</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$45.00 </span>
-                                        <span class="new-price">$40.00 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35" data-aos="fade-up" data-aos-delay="800">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-9.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Modern Lounge Chairs</a></h3>
-                                    <div class="product-price">
-                                        <span>$30.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div id="pro-2" class="tab-pane">
                     <div class="row">
+                        @foreach ($bestSellingProducts as $bestSellingProduct)
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="product-wrap mb-35">
                                 <div class="product-img img-zoom mb-25">
                                     <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-9.png" alt="">
+                                        <img src="{{ asset('admin/images/product_images/'.$bestSellingProduct->image) }}" alt="{{ $bestSellingProduct->product_slug }}">
                                     </a>
                                     <div class="product-badge badge-top badge-right badge-pink">
                                         <span>-10%</span>
@@ -683,194 +404,15 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">Modern Lounge Chairs</a></h3>
+                                    <h3><a href="product-details.html">{{ $bestSellingProduct->name }}</a></h3>
                                     <div class="product-price">
-                                        <span class="old-price">$25.89 </span>
-                                        <span class="new-price">$20.25 </span>
+                                        <span class="old-price">BDT {{ $bestSellingProduct->regular_price }} </span>
+                                        <span class="new-price">BDT {{ $bestSellingProduct->selling_price }}  </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-8.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Modern Swivel Chair</a></h3>
-                                    <div class="product-price">
-                                        <span>$50.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-6.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Stylish Dining Chair</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$45.00 </span>
-                                        <span class="new-price">$40.00 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-7.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Round Standard Chair</a></h3>
-                                    <div class="product-price">
-                                        <span>$30.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-5.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Interior moderno render</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$25.89 </span>
-                                        <span class="new-price">$20.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-4.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">Stylish Swing Chair</a></h3>
-                                    <div class="product-price">
-                                        <span>$50.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-2.png" alt="">
-                                    </a>
-                                    <div class="product-badge badge-top badge-right badge-pink">
-                                        <span>-10%</span>
-                                    </div>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
-                                    <div class="product-price">
-                                        <span class="old-price">$45.00 </span>
-                                        <span class="new-price">$40.00 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                            <div class="product-wrap mb-35">
-                                <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
-                                        <img src="{{ asset('/front') }}/assets/images/product/product-1.png" alt="">
-                                    </a>
-                                    <div class="product-action-wrap">
-                                        <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                            <i class="pe-7s-look"></i>
-                                        </button>
-                                    </div>
-                                    <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
-                                    </div>
-                                </div>
-                                <div class="product-content">
-                                    <h3><a href="product-details.html">New Modern Sofa Set</a></h3>
-                                    <div class="product-price">
-                                        <span>$30.25 </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
                 <div id="pro-3" class="tab-pane">
@@ -1126,5 +668,34 @@
             </div>
         </div>
     </div>
+    @push('front_script')
+    <script>
+        $(document).ready(function(){
+            $(document).on('click','.showModal',function(){
+                var productId = $(this).data('id');
+                // alert(productId);
+                var baseUrl = {!! json_encode(url('/')) !!} ;
+                // alert(baseUrl);
+                $.ajax({
+                    method: "GET",
+                    url: "/get-product-info-for-modal",
+                    dataType: "JSON",
+                    data: {id:productId},
+                    success: function(res) {
+                        console.log(res);
+                        $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
+                        $('#modalOldPrice').text('BDT '+res.regular_price);
+                        $('#modalNewPrice').text('BDT '+res.selling_price);
+                        $('#modalShortDescription').text(res.short_description);
+                        $('#modalName').text(res.name);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
+        });
+    </script>
+    @endpush
     @endsection
 </x-front-layout>
