@@ -33,4 +33,8 @@ class CartController extends Controller
             return json_encode('cart added successfully');
         }
     }
+    public function cartView() {
+        $carts =  Cart::getContent();
+        return view('front.cart.cart_view',compact('carts'));
+    }
 }

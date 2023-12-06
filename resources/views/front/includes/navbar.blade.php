@@ -86,6 +86,9 @@
                                 @if (Route::has('contact_us'))
                                 <li><a href="{{ route('contact_us') }}">CONTACT US</a></li>
                                 @endif
+                                @if (Route::has('cart_View'))
+                                <li><a href="{{ route('cart_View') }}">Cart</a></li>
+                                @endif
                             </ul>
                         </nav>
                     </div>
