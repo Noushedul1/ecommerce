@@ -37,4 +37,8 @@ class CartController extends Controller
         $carts =  Cart::getContent();
         return view('front.cart.cart_view',compact('carts'));
     }
+    public function removeProductCart($id) {
+        Cart::remove($id);
+        return redirect()->back();
+    }
 }

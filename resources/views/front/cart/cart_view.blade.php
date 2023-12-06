@@ -74,31 +74,36 @@
                                         <tr>
                                             <th class="width-thumbnail"></th>
                                             <th class="width-name">Product</th>
+                                            <th class="width-image">Image</th>
                                             <th class="width-price"> Price</th>
                                             <th class="width-quantity">Quantity</th>
-                                            <th class="width-subtotal">Image</th>
+                                            <th class="width-subtotal">Subtotal</th>
                                             <th class="width-remove"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($carts as $cart)
                                         <tr>
+                                            {{-- <td>{{ $loop->iteration }}</td> --}}
                                             <td class="product-thumbnail">
                                                 <a href="product-details.html"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
                                                 <h5><a href="product-details.html">{{ $cart->name }}</a></h5>
                                             </td>
+                                            <td class="product-image"><span>
+                                                <img src="{{ asset('/admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="100" width="100">
+                                            </span></td>
                                             <td class="product-cart-price"><span class="amount">BDT {{ $cart->price }}</span></td>
                                             <td class="cart-quality">
                                                 <div class="product-quality">
-                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                                    <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="{{ $cart->quantity }}">
                                                 </div>
                                             </td>
                                             <td class="product-total"><span>
-                                                <img src="{{ asset('/admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="100" width="100">
+                                                <p>{{ $cart->quantity * $cart->price }}</p>
                                             </span></td>
-                                            <td class="product-remove"><a href="#"><i class=" ti-trash "></i></a></td>
+                                            <td class="product-remove"><a href="{{ route('remove_product_cart',$cart->id) }}"><i class=" ti-trash "></i></a></td>
                                         </tr>
                                         @endforeach
                                     </tbody>
