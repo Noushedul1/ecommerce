@@ -22,4 +22,11 @@
     <script src="{{ asset('/front') }}/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="{{ asset('/front') }}/assets/js/main.js"></script>
+    <script>
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+    </script>
     @stack('front_script')

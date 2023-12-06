@@ -17,6 +17,7 @@
     <!-- For the og:image content, replace the # with a link of an image -->
     <meta property="og:image" content="#" />
     <meta property="og:description" content="Urdan Minimal eCommerce Bootstrap 5 Template is a stunning eCommerce website template that is the best choice for any online store." />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Add site Favicon -->
     <link rel="icon" href="{{ asset('/front') }}/assets/images/favicon/cropped-favicon-32x32.png" sizes="32x32" />
     <link rel="icon" href="{{ asset('/front') }}/assets/images/favicon/cropped-favicon-192x192.png" sizes="192x192" />

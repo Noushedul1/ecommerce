@@ -7,6 +7,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\Front\CartController;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\SubCategoryController;
 
@@ -79,6 +80,9 @@ Route::controller(FrontController::class)->group(function(){
     Route::get('/category_page/{id}','categoryPage')->name('category_page');
     Route::get('/subcategory_page/{id}','subcategoryPage')->name('subcategory_page');
     Route::get('/get-product-info-for-modal','getProductInfo')->name('getProduct_Info');
+});
+Route::controller(CartController::class)->group(function(){
+    Route::post('/add-to-cart','addToCart')->name('addTo_cart');
 });
 
 Route::middleware('auth')->group(function () {

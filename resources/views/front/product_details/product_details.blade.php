@@ -175,13 +175,15 @@
                                     <li><a title="Purple" class="purple" href="#">purple</a></li>
                                 </ul>
                             </div> --}}
-                            <form action="" method="post">
+                            <form action="{{ route('addTo_cart') }}" method="post" id="cartForm">
+                                @csrf
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <div class="product-details-action-wrap">
                                     <div class="product-quality">
-                                        <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
+                                        <input class="cart-plus-minus-box input-text qty text" name="qty" value="1">
                                     </div>
                                     <div class="single-product-cart btn-hover">
-                                        <a href="#">Add to cart</a>
+                                        <a href="" onclick="event.preventDefault();document.getElementById('cartForm').submit();" id="submitCartForm">Add to cart</a>
                                     </div>
                                     <div class="single-product-wishlist">
                                         <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>

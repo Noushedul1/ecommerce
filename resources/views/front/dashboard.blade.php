@@ -181,7 +181,7 @@
                                     </button>
                                 </div>
                                 <div class="product-action-2-wrap">
-                                    <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                    <button class="product-action-btn-2 addToCart" data-id="{{ $product->id }}" data-qty="1" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
                                 </div>
                             </div>
                             <div class="product-content">
@@ -395,12 +395,12 @@
                                     </div>
                                     <div class="product-action-wrap">
                                         <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                        <button class="product-action-btn-1" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                        <button class="product-action-btn-1 showModal" title="Quick View" data-bs-toggle="modal" data-id="{{ $bestSellingProduct->id }}" data-bs-target="#exampleModal">
                                             <i class="pe-7s-look"></i>
                                         </button>
                                     </div>
                                     <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                        <button class="product-action-btn-2 addToCart" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
                                     </div>
                                 </div>
                                 <div class="product-content">
@@ -691,6 +691,21 @@
                     },
                     error: function(err) {
                         console.log(err);
+                    }
+                });
+            });
+            $(document).on('click','.addToCart',function(){
+                var productId = $(this).data('id');
+                var qty = $(this).data('qty');
+
+                // alert(qty);
+                $.ajax({
+                    method: "POST",
+                    url: "/add-to-cart",
+                    dataType:"JSON",
+                    data: {product_id:productId,qty:qty},
+                    success: function(data) {
+                        console.log(data);
                     }
                 });
             });
