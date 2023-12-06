@@ -1,5 +1,12 @@
 <x-front-layout>
     @section('front_title','Home')
+    @push('front_link')
+    <style>
+        .toast-success{
+            color: green;
+        }
+    </style>
+    @endpush
     @section('front_content')
     <!-- mini cart start -->
     <div class="sidebar-cart-active">
@@ -8,36 +15,26 @@
             <div class="cart-content">
                 <h3>Shopping Cart</h3>
                 <ul>
+                    @foreach ($carts as $cart)
                     <li>
                         <div class="cart-img">
-                            <a href="#"><img src="{{ asset('/front') }}/assets/images/cart/cart-1.jpg" alt=""></a>
+                            <a href="#"><img src="{{ asset('admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="50" width="50"></a>
                         </div>
                         <div class="cart-title">
-                            <h4><a href="#">Stylish Swing Chair</a></h4>
-                            <span> 1 × $49.00	</span>
+                            <h4><a href="{{ route('product_details',$cart->id) }}">{{ $cart->name }}</a></h4>
+                            <span> {{ $cart->quantity }} × BDT {{ $cart->price }}	</span>
                         </div>
                         <div class="cart-delete">
-                            <a href="#">×</a>
+                            <a href="{{ route('remove_product_cart',$cart->id) }}">×</a>
                         </div>
                     </li>
-                    <li>
-                        <div class="cart-img">
-                            <a href="#"><img src="{{ asset('/front') }}/assets/images/cart/cart-2.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h4><a href="#">Modern Chairs</a></h4>
-                            <span> 1 × $49.00	</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#">×</a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
                 <div class="cart-total">
-                    <h4>Subtotal: <span>$170.00</span></h4>
+                    <h4>Subtotal: <span>BDT {{  Cart::getSubTotal(); }}</span></h4>
                 </div>
                 <div class="cart-btn btn-hover">
-                    <a class="theme-color" href="cart.html">view cart</a>
+                    <a class="theme-color" href="{{ route('cart_View') }}">view cart</a>
                 </div>
                 <div class="checkout-btn btn-hover">
                     <a class="theme-color" href="checkout.html">checkout</a>
@@ -366,7 +363,7 @@
                                         </button>
                                     </div>
                                     <div class="product-action-2-wrap">
-                                        <button class="product-action-btn-2" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
+                                        <button class="product-action-btn-2 addToCart" data-id="{{ $hotProduct->id }}" data-qty="1" title="Add To Cart"><i class="pe-7s-cart"></i> Add to cart</button>
                                     </div>
                                 </div>
                                 <div class="product-content">

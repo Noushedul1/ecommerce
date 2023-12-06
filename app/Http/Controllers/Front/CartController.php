@@ -26,12 +26,9 @@ class CartController extends Controller
         ]);
         // return Cart::getContent(); // practice
         // return redirect()->back();
-        if(!$request->ajax()) {
-            return redirect()->back();
-        }
-        else{
-            return json_encode('cart added successfully');
-        }
+        $notification = array('message'=>'Successfully cart Add','alert-type'=>'success');
+        return redirect()->back()->with($notification);
+        // return json_encode('cart added successfully');
     }
     public function cartView() {
         $carts =  Cart::getContent();
@@ -39,6 +36,7 @@ class CartController extends Controller
     }
     public function removeProductCart($id) {
         Cart::remove($id);
-        return redirect()->back();
+        $notification = array('message'=>'Successfully cart Deleted','alert-type'=>'success');
+        return redirect()->back()->with($notification);
     }
 }

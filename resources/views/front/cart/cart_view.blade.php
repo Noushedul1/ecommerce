@@ -1,5 +1,11 @@
 <x-front-layout>
     @section('front_title','Cart View')
+    @push('front_link')
+    <style>
+        .toast-success{
+            color: green;
+        }
+    </style>
     @section('front_content')
     <div class="sidebar-cart-active">
         <div class="sidebar-cart-all">
@@ -89,7 +95,7 @@
                                                 <a href="product-details.html"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
                                             </td>
                                             <td class="product-name">
-                                                <h5><a href="product-details.html">{{ $cart->name }}</a></h5>
+                                                <h5><a href="{{ route('product_details',$cart->id) }}">{{ $cart->name }}</a></h5>
                                             </td>
                                             <td class="product-image"><span>
                                                 <img src="{{ asset('/admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="100" width="100">
@@ -114,7 +120,7 @@
                             <div class="col-lg-12">
                                 <div class="cart-shiping-update-wrapper">
                                     <div class="cart-shiping-update btn-hover">
-                                        <a href="#">Continue Shopping</a>
+                                        <a href="{{ url('/') }}">Continue Shopping</a>
                                     </div>
                                     <div class="cart-clear-wrap">
                                         <div class="cart-clear btn-hover">

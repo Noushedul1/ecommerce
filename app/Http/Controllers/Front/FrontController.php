@@ -7,14 +7,16 @@ use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Cart;
 
 class FrontController extends Controller
 {
     public function index(){
+        $carts = Cart::getContent();
         $products = Product::where('status',1)->get();
         $hotProducts = Product::orderBy('hit_count','DESC')->where('hit_count','>','5')->where('status',1)->get();
         $bestSellingProducts = Product::orderBy('sells_count','DESC')->where('sells_count','>','0')->where('status',1)->get();
-        return view('front.dashboard',compact('products','hotProducts','bestSellingProducts'));
+        return view('front.dashboard',compact('products','hotProducts','bestSellingProducts','carts'));
     }
     public function productDetails($id) {
         $product = Product::find($id);
