@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Front;
 
-use App\Models\Product;
 use Cart;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -33,6 +33,18 @@ class CartController extends Controller
     public function cartView() {
         $carts =  Cart::getContent();
         return view('front.cart.cart_view',compact('carts'));
+    }
+    public function cartIncrement($id) {
+        Cart::update($id,[
+            'quantity'=>1
+        ]);
+        return redirect()->back();
+    }
+    public function cartDecrement($id) {
+        Cart::update($id,[
+            'quantity'=>-1
+        ]);
+        return redirect()->back();
     }
     public function removeProductCart($id) {
         Cart::remove($id);

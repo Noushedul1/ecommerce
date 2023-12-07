@@ -340,7 +340,7 @@
                 <div class="tab-style-1 nav" data-aos="fade-up" data-aos-delay="400">
                     <a class="active" href="#pro-1" data-bs-toggle="tab">New Arrivals </a>
                     <a href="#pro-2" data-bs-toggle="tab" class=""> Best Sellers </a>
-                    <a href="#pro-3" data-bs-toggle="tab" class=""> Sale Items </a>
+                    {{-- <a href="#pro-3" data-bs-toggle="tab" class=""> Sale Items </a> --}}
                 </div>
             </div>
             <div class="tab-content jump">
@@ -384,7 +384,7 @@
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="product-wrap mb-35">
                                 <div class="product-img img-zoom mb-25">
-                                    <a href="product-details.html">
+                                    <a href="{{ route('product_details',$bestSellingProduct->id) }}">
                                         <img src="{{ asset('admin/images/product_images/'.$bestSellingProduct->image) }}" alt="{{ $bestSellingProduct->product_slug }}">
                                     </a>
                                     <div class="product-badge badge-top badge-right badge-pink">
@@ -401,7 +401,7 @@
                                     </div>
                                 </div>
                                 <div class="product-content">
-                                    <h3><a href="product-details.html">{{ $bestSellingProduct->name }}</a></h3>
+                                    <h3><a href="{{ route('product_details',$bestSellingProduct->id) }}">{{ $bestSellingProduct->name }}</a></h3>
                                     <div class="product-price">
                                         <span class="old-price">BDT {{ $bestSellingProduct->regular_price }} </span>
                                         <span class="new-price">BDT {{ $bestSellingProduct->selling_price }}  </span>
@@ -412,7 +412,7 @@
                         @endforeach
                     </div>
                 </div>
-                <div id="pro-3" class="tab-pane">
+                {{-- <div id="pro-3" class="tab-pane">
                     <div class="row">
                         <div class="col-lg-3 col-md-4 col-sm-6 col-12">
                             <div class="product-wrap mb-35">
@@ -623,7 +623,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

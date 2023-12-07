@@ -7,42 +7,33 @@
         }
     </style>
     @section('front_content')
+    <!-- mini cart start -->
     <div class="sidebar-cart-active">
         <div class="sidebar-cart-all">
             <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
             <div class="cart-content">
                 <h3>Shopping Cart</h3>
                 <ul>
+                    @foreach ($carts as $cart)
                     <li>
                         <div class="cart-img">
-                            <a href="#"><img src="assets/images/cart/cart-1.jpg" alt=""></a>
+                            <a href="#"><img src="{{ asset('admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="50" width="50"></a>
                         </div>
                         <div class="cart-title">
-                            <h4><a href="#">Stylish Swing Chair</a></h4>
-                            <span> 1 × $49.00	</span>
+                            <h4><a href="{{ route('product_details',$cart->id) }}">{{ $cart->name }}</a></h4>
+                            <span> {{ $cart->quantity }} × BDT {{ $cart->price }}	</span>
                         </div>
                         <div class="cart-delete">
-                            <a href="#">×</a>
+                            <a href="{{ route('remove_product_cart',$cart->id) }}">×</a>
                         </div>
                     </li>
-                    <li>
-                        <div class="cart-img">
-                            <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                        </div>
-                        <div class="cart-title">
-                            <h4><a href="#">Modern Chairs</a></h4>
-                            <span> 1 × $49.00	</span>
-                        </div>
-                        <div class="cart-delete">
-                            <a href="#">×</a>
-                        </div>
-                    </li>
+                    @endforeach
                 </ul>
                 <div class="cart-total">
-                    <h4>Subtotal: <span>$170.00</span></h4>
+                    <h4>Subtotal: <span>BDT {{  Cart::getSubTotal(); }}</span></h4>
                 </div>
                 <div class="cart-btn btn-hover">
-                    <a class="theme-color" href="cart.html">view cart</a>
+                    <a class="theme-color" href="{{ route('cart_View') }}">view cart</a>
                 </div>
                 <div class="checkout-btn btn-hover">
                     <a class="theme-color" href="checkout.html">checkout</a>
@@ -103,7 +94,9 @@
                                             <td class="product-cart-price"><span class="amount">BDT {{ $cart->price }}</span></td>
                                             <td class="cart-quality">
                                                 <div class="product-quality">
+                                                    <a href="{{ route('cart_decr',['id'=>$cart->id]) }}" class="dec qtybutton">-</a>
                                                     <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="{{ $cart->quantity }}">
+                                                    <a href="{{ route('cart_incr',['id'=>$cart->id]) }}" class="inc qtybutton">+</a>
                                                 </div>
                                             </td>
                                             <td class="product-total"><span>
@@ -212,5 +205,28 @@
             </div>
         </div>
     </div>
+    @push('front_script')
+    <script>
+        var CartPlusMinus = $('.product-quality');
+
+        // CartPlusMinus.prepend('<a class="dec qtybutton">-</a>');
+        // CartPlusMinus.append('<a class="inc qtybutton">+</a>');
+        $(".qtybutton").on("click", function() {
+        var $button = $(this);
+        var oldValue = $button.parent().find("input").val();
+        if ($button.text() === "+") {
+            var newVal = parseFloat(oldValue) + 1;
+        } else {
+            // Don't allow decrementing below zero
+            if (oldValue > 1) {
+                var newVal = parseFloat(oldValue) - 1;
+            } else {
+                newVal = 1;
+            }
+        }
+        $button.parent().find("input").val(newVal);
+    });
+    </script>
+    @endpush
     @endsection
 </x-front-layout>

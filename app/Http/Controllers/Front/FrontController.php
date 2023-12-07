@@ -24,14 +24,16 @@ class FrontController extends Controller
         return view('front.product_details.product_details',compact('product','reladedProducts'));
     }
     public function categoryPage($id) {
+        $carts = Cart::getContent();
         $products = Product::where('category_id',$id)->where('status',1)->get();
         $category = Category::find($id);
-        return view('front.category_page.category_page',compact('products','category'));
+        return view('front.category_page.category_page',compact('products','category','carts'));
     }
     public function subcategoryPage($id) {
+        $carts = Cart::getContent();
         $products = Product::where('subcategory_id',$id)->where('status',1)->get();
         $subcategory = Subcategory::find($id);
-        return view('front.subcategory_page.subcategory_page',compact('products','subcategory'));
+        return view('front.subcategory_page.subcategory_page',compact('products','subcategory','carts'));
     }
     public function getProductInfo() {
         // return json_decode($_GET['id']);
