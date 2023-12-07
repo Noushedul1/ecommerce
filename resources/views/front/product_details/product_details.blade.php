@@ -3,49 +3,39 @@
     @section('front_content')
     <div class="main-wrapper main-wrapper-2">
         <!-- mini cart start -->
-        <div class="sidebar-cart-active">
-            <div class="sidebar-cart-all">
-                <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
-                <div class="cart-content">
-                    <h3>Shopping Cart</h3>
-                    <ul>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#">Stylish Swing Chair</a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="cart-img">
-                                <a href="#"><img src="assets/images/cart/cart-2.jpg" alt=""></a>
-                            </div>
-                            <div class="cart-title">
-                                <h4><a href="#"></a></h4>
-                                <span> 1 × $49.00	</span>
-                            </div>
-                            <div class="cart-delete">
-                                <a href="#">×</a>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="cart-total">
-                        <h4>Subtotal: <span>$170.00</span></h4>
-                    </div>
-                    <div class="cart-btn btn-hover">
-                        <a class="theme-color" href="cart.html">view cart</a>
-                    </div>
-                    <div class="checkout-btn btn-hover">
-                        <a class="theme-color" href="checkout.html">checkout</a>
-                    </div>
+    <div class="sidebar-cart-active">
+        <div class="sidebar-cart-all">
+            <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
+            <div class="cart-content">
+                <h3>Shopping Cart</h3>
+                <ul>
+                    @foreach ($carts as $cart)
+                    <li>
+                        <div class="cart-img">
+                            <a href="#"><img src="{{ asset('admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="50" width="50"></a>
+                        </div>
+                        <div class="cart-title">
+                            <h4><a href="{{ route('product_details',$cart->id) }}">{{ $cart->name }}</a></h4>
+                            <span> {{ $cart->quantity }} × BDT {{ $cart->price }}	</span>
+                        </div>
+                        <div class="cart-delete">
+                            <a href="{{ route('remove_product_cart',$cart->id) }}">×</a>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+                <div class="cart-total">
+                    <h4>Subtotal: <span>BDT {{  Cart::getSubTotal(); }}</span></h4>
+                </div>
+                <div class="cart-btn btn-hover">
+                    <a class="theme-color" href="{{ route('cart_View') }}">view cart</a>
+                </div>
+                <div class="checkout-btn btn-hover">
+                    <a class="theme-color" href="checkout.html">checkout</a>
                 </div>
             </div>
         </div>
+    </div>
         <div class="breadcrumb-area bg-gray-4 breadcrumb-padding-1">
             <div class="container">
                 <div class="breadcrumb-content text-center">
@@ -175,15 +165,15 @@
                                     <li><a title="Purple" class="purple" href="#">purple</a></li>
                                 </ul>
                             </div> --}}
-                            <form action="{{ route('addTo_cart') }}" method="post" id="cartForm">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                {{-- <input type="hidden" name="product_id" value="{{ $product->id }}"> --}}
                                 <div class="product-details-action-wrap">
                                     <div class="product-quality">
-                                        <input class="cart-plus-minus-box input-text qty text" name="qty" value="1">
+                                        {{-- <a href="{{ route('cart_decr',['id'=>$product->id]) }}" class="dec qtybutton">-</a> --}}
+                                        <input class="cart-plus-minus-box input-text qty text pqty" name="qty" value="1">
+                                        {{-- <a href="{{ route('cart_incr',['id'=>$product->id]) }}" class="inc qtybutton">+</a> --}}
                                     </div>
                                     <div class="single-product-cart btn-hover">
-                                        <a href="" onclick="event.preventDefault();document.getElementById('cartForm').submit();" id="submitCartForm">Add to cart</a>
+                                        <a href="" class="addToCart" data-id="{{ $product->id }}">Add to cart</a>
                                     </div>
                                     <div class="single-product-wishlist">
                                         <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
@@ -192,7 +182,6 @@
                                         <a title="Compare" href="#"><i class="pe-7s-shuffle"></i></a>
                                     </div>
                                 </div>
-                            </form>
                             <div class="product-details-meta">
                                 <ul>
                                     <li><span class="title">SKU:</span> Ch-256xl</li>
@@ -595,26 +584,36 @@
     @push('front_script')
     <script>
         $(document).ready(function(){
-            $(document).on('click','.showModal',function(){
-                var productId = $(this).data('id');
-                // alert(productId);
-                var baseUrl = {!! json_encode(url('/')) !!} ;
-                // alert(baseUrl);
+            var CartPlusMinus = $('.product-quality');
+
+            CartPlusMinus.prepend('<a class="dec qtybutton">-</a>');
+            CartPlusMinus.append('<a class="inc qtybutton">+</a>');
+            $(".qtybutton").on("click", function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() === "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            $button.parent().find("input").val(newVal);
+            });
+
+            $(document).on('click','.addToCart',function(){
+                var $productId = $(this).data('id');
+                var $qty = $('.pqty').val();
                 $.ajax({
-                    method: "GET",
-                    url: "/get-product-info-for-modal",
+                    method: "POST",
+                    url: '/add-to-cart',
                     dataType: "JSON",
-                    data: {id:productId},
-                    success: function(res) {
-                        console.log(res);
-                        $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
-                        $('#modalOldPrice').text('BDT '+res.regular_price);
-                        $('#modalNewPrice').text('BDT '+res.selling_price);
-                        $('#modalShortDescription').text(res.short_description);
-                        $('#modalName').text(res.name);
-                    },
-                    error: function(err) {
-                        console.log(err);
+                    data: {product_id:$productId,qty:$qty},
+                    success: function(data) {
+                        console.log(data);
                     }
                 });
             });

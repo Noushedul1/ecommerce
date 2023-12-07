@@ -84,9 +84,11 @@ Route::controller(FrontController::class)->group(function(){
 Route::controller(CartController::class)->group(function(){
     Route::post('/add-to-cart','addToCart')->name('addTo_cart');
     Route::get('/cart-view','cartView')->name('cart_View');
-    Route::get('/revome-product-from-cart/{id}','removeProductCart')->name('remove_product_cart');
     Route::get('/cart-increment/{id}','cartIncrement')->name('cart_incr');
     Route::get('/cart-decrement/{id}','cartDecrement')->name('cart_decr');
+    Route::get('/checkoutIndex','checkoutIndex')->name('checkout_Index');
+    Route::post('/checkout','checkout')->name('checkout');
+    Route::get('/revome-product-from-cart/{id}','removeProductCart')->name('remove_product_cart');
 });
 
 Route::middleware('auth')->group(function () {

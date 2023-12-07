@@ -19,9 +19,10 @@ class FrontController extends Controller
         return view('front.dashboard',compact('products','hotProducts','bestSellingProducts','carts'));
     }
     public function productDetails($id) {
+        $carts = Cart::getContent();
         $product = Product::find($id);
         $reladedProducts = Product::where('category_id',$product->category_id)->take(4)->get();
-        return view('front.product_details.product_details',compact('product','reladedProducts'));
+        return view('front.product_details.product_details',compact('product','reladedProducts','carts'));
     }
     public function categoryPage($id) {
         $carts = Cart::getContent();

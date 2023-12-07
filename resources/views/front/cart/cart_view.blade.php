@@ -65,6 +65,7 @@
                 <div class="col-12">
                     {{-- <form action="#"> --}}
                         <div class="cart-table-content">
+                            <h4 class="text-center">In Your Shopping Cart: {{ $carts->count() }} Items</h4>
                             <div class="table-content table-responsive">
                                 <table>
                                     <thead>
@@ -129,79 +130,8 @@
                     {{-- </form> --}}
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="cart-calculate-discount-wrap mb-40">
-                        <h4>Calculate shipping </h4>
-                        <div class="calculate-discount-content">
-                            <div class="select-style mb-15">
-                                <select class="select-two-active">
-                                    <option>Bangladesh</option>
-                                    <option>Bahrain</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Barbados</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                            <div class="select-style mb-15">
-                                <select class="select-two-active">
-                                    <option>State / County</option>
-                                    <option>Bahrain</option>
-                                    <option>Azerbaijan</option>
-                                    <option>Barbados</option>
-                                    <option>Barbados</option>
-                                </select>
-                            </div>
-                            <div class="input-style">
-                                <input type="text" placeholder="Town / City">
-                            </div>
-                            <div class="input-style">
-                                <input type="text" placeholder="Postcode / ZIP">
-                            </div>
-                            <div class="calculate-discount-btn btn-hover">
-                                <a class="btn theme-color" href="#">Update</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="cart-calculate-discount-wrap mb-40">
-                        <h4>Coupon Discount </h4>
-                        <div class="calculate-discount-content">
-                            <p>Enter your coupon code if you have one.</p>
-                            <div class="input-style">
-                                <input type="text" placeholder="Coupon code">
-                            </div>
-                            <div class="calculate-discount-btn btn-hover">
-                                <a class="btn theme-color" href="#">Apply Coupon</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-12 col-12">
-                    <div class="grand-total-wrap">
-                        <div class="grand-total-content">
-                            <h3>Subtotal <span>$180.00</span></h3>
-                            <div class="grand-shipping">
-                                <span>Shipping</span>
-                                <ul>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Free shipping</label></li>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Flat rate: <span>$100.00</span></label></li>
-                                    <li><input type="radio" name="shipping" value="info" checked="checked"><label>Local pickup: <span>$120.00</span></label></li>
-                                </ul>
-                            </div>
-                            <div class="shipping-country">
-                                <p>Shipping to Bangladesh</p>
-                            </div>
-                            <div class="grand-total">
-                                <h4>Total <span>$185.00</span></h4>
-                            </div>
-                        </div>
-                        <div class="grand-total-btn btn-hover">
-                            <a class="btn theme-color" href="checkout.html">Proceed to checkout</a>
-                        </div>
-                    </div>
-                </div>
+            <div class="grand-total-btn btn-hover">
+                <a class="btn btn-success" href="{{ route('checkout_Index') }}">Proceed to checkout</a>
             </div>
         </div>
     </div>
