@@ -3,6 +3,40 @@
     @section('front_content')
     <div class="container">
         <div class="row">
+            <!-- mini cart start -->
+            <div class="sidebar-cart-active">
+                <div class="sidebar-cart-all">
+                    <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
+                    <div class="cart-content">
+                        <h3>Shopping Cart</h3>
+                        <ul>
+                            @foreach ($carts as $cart)
+                            <li>
+                                <div class="cart-img">
+                                    <a href="#"><img src="{{ asset('admin/images/product_images/'.$cart->attributes->image) }}" alt="" height="50" width="50"></a>
+                                </div>
+                                <div class="cart-title">
+                                    <h4><a href="{{ route('product_details',$cart->id) }}">{{ $cart->name }}</a></h4>
+                                    <span> {{ $cart->quantity }} × BDT {{ $cart->price }}	</span>
+                                </div>
+                                <div class="cart-delete">
+                                    <a href="{{ route('remove_product_cart',$cart->id) }}">×</a>
+                                </div>
+                            </li>
+                            @endforeach
+                        </ul>
+                        <div class="cart-total">
+                            <h4>Subtotal: <span>BDT {{  Cart::getSubTotal(); }}</span></h4>
+                        </div>
+                        <div class="cart-btn btn-hover">
+                            <a class="theme-color" href="{{ route('cart_View') }}">view cart</a>
+                        </div>
+                        <div class="checkout-btn btn-hover">
+                            <a class="theme-color" href="checkout.html">checkout</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <form action="{{ route('checkout') }}" method="POST">
                 @csrf
                 <div class="col-lg-8 col-md-6 col-12">
@@ -43,13 +77,13 @@
                         <h4>Payment Method</h4>
                         <div class="input-style">
                             <label for="">
-                                <input type="radio" checked placeholder="" name="payment_method">Cash on Delivery
+                                <input type="radio" checked placeholder="" name="payment_method" value="cash on delivery">Cash on Delivery
                             </label>
                         </div>
                         <div class="input-style">
                             <h4>Delivery Method</h4>
                             <label for="">
-                                <input type="radio" checked placeholder="" name="delivery_method">Home Delivery
+                                <input type="radio" checked placeholder="" name="delivery_method" value="home delivery">Home Delivery
                             </label>
                         </div>
                     </div>

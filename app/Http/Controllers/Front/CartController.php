@@ -8,6 +8,7 @@ use App\Models\Front\Order;
 use Illuminate\Http\Request;
 use App\Models\Front\Orderitem;
 use App\Http\Controllers\Controller;
+use App\Events\CustomermailProcessed;
 
 class CartController extends Controller
 {
@@ -76,6 +77,8 @@ class CartController extends Controller
             $orderItem->save();
             Cart::clear();
         }
+        $customerMsg = ['cart_submit'=>'Your order submited'];
+        event(new CustomermailProcessed($customerMsg));
         return redirect()->back();
     }
     public function removeProductCart($id) {
