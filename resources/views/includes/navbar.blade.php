@@ -95,6 +95,17 @@
                         @endif
                     </ul>
             </li>
+            <li>
+                <a href="javascript:;"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                    <span class="nav-label">Order</span><i class="fa fa-angle-left arrow"></i></a>
+                    <ul class="nav-2-level collapse">
+                        @if (Route::has('admin.order.index'))
+                        <li>
+                            <a href="{{ route('admin.order.index') }}">Manage</a>
+                        </li>
+                        @endif
+                    </ul>
+            </li>
         </ul>
     </div>
 </nav>

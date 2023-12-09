@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CategoryController;
@@ -67,6 +68,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
         Route::get('/edit/{product:product_slug}','edit')->name('edit');
         Route::post('/update/{product:product_slug}','update')->name('update');
         Route::delete('/destroy/{product:product_slug}','destroy')->name('destroy');
+    });
+    Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function(){
+        Route::get('/index','index')->name('index');
+        Route::get('/download_Pdf','downloadPdf')->name('downloadpdf');
     });
 });
 

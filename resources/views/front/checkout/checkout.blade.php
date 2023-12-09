@@ -29,7 +29,7 @@
                             <h4>Subtotal: <span>BDT {{  Cart::getSubTotal(); }}</span></h4>
                         </div>
                         <div class="cart-btn btn-hover">
-                            <a class="theme-color" href="{{ route('cart_View') }}">view cart</a>
+                            <a class="theme-color" href="{{ route('checkout_Index') }}">view cart</a>
                         </div>
                         <div class="checkout-btn btn-hover">
                             <a class="theme-color" href="checkout.html">checkout</a>

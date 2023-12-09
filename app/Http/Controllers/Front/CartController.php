@@ -61,7 +61,6 @@ class CartController extends Controller
         $order->email = $request->email;
         $order->mobile = $request->mobile;
         $order->city = $request->city;
-        $order->status = "Pending";
         $order->address = $request->address;
         $order->payment_method = $request->payment_method;
         $order->delivery_method = $request->delivery_method;
@@ -74,13 +73,14 @@ class CartController extends Controller
             $orderItem->product_name = $cart->name;
             $orderItem->price = $cart->price;
             $orderItem->quantity = $cart->quantity;
+            $orderItem->total_price = $cart->price*$cart->quantity+60;
             $orderItem->save();
             Cart::clear();
         }
         $customerMsg = ['customer_name'=>$request->first_name,'cart_submit'=>'Your order submited'];
         $lastmail = ['lastmail'=>$request->email];
         event(new CustomermailProcessed($customerMsg,$lastmail));
-        return redirect()->back();
+        return redirect()->route('admin.dashboard');
     }
     public function removeProductCart($id) {
         Cart::remove($id);

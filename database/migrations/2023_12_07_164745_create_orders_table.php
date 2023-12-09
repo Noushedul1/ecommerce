@@ -21,7 +21,7 @@ return new class extends Migration
             $table->text('address');
             $table->string('payment_method');
             $table->string('delivery_method');
-            $table->string('status');
+            $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });
     }
