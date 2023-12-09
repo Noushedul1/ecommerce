@@ -1,5 +1,5 @@
 <p>
-{{ $customermail['cart_submit'] }}
+{{ $customermail['customer_name']}} {{ $customermail['cart_submit'] }}
 </p>
 
 

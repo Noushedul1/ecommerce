@@ -18,9 +18,11 @@ class CustomermailProcessed
      * Create a new event instance.
      */
     public $customermail;
-    public function __construct($customermail)
+    public $lastmail;
+    public function __construct($customermail,$lastmail)
     {
         $this->customermail = $customermail;
+        $this->lastmail = $lastmail;
     }
 
     /**

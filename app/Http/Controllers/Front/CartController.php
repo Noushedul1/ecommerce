@@ -77,8 +77,9 @@ class CartController extends Controller
             $orderItem->save();
             Cart::clear();
         }
-        $customerMsg = ['cart_submit'=>'Your order submited'];
-        event(new CustomermailProcessed($customerMsg));
+        $customerMsg = ['customer_name'=>$request->first_name,'cart_submit'=>'Your order submited'];
+        $lastmail = ['lastmail'=>$request->email];
+        event(new CustomermailProcessed($customerMsg,$lastmail));
         return redirect()->back();
     }
     public function removeProductCart($id) {

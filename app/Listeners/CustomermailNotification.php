@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use App\Mail\CustomerMail;
+use App\Models\Front\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use App\Events\CustomermailProcessed;
@@ -24,6 +25,6 @@ class CustomermailNotification
      */
     public function handle(CustomermailProcessed $event): void
     {
-        Mail::to(Auth::user()->email)->send(new CustomerMail($event->customermail));
+        Mail::to($event->lastmail)->send(new CustomerMail($event->customermail));
     }
 }
