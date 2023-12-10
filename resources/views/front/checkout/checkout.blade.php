@@ -45,15 +45,24 @@
                         <div class="calculate-discount-content">
                             <div class="input-style">
                                 <input type="text" name="first_name" placeholder="First Name">
+                                @error('first_name')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-style">
                                 <input type="text" name="last_name" placeholder="Last Name">
                             </div>
                             <div class="input-style">
                                 <input type="text" name="email" placeholder="Email">
+                                @error('email')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="input-style">
                                 <input type="text" name="mobile" placeholder="Mobile">
+                                @error('mobile')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <div class="select-style mb-15">
                                 <select class="select-two-active" name="city">
@@ -68,6 +77,9 @@
                             </div>
                             <div class="input-style">
                                 <textarea name="address" id="" cols="30" rows="10" placeholder="Address"></textarea>
+                                @error('address')
+                                <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                         </div>
                     </div>

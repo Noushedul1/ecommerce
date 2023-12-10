@@ -59,6 +59,12 @@ class CartController extends Controller
     }
     public function checkout(Request $request) {
         // return $request->all();
+        $request->validate([
+            'first_name'=>'required',
+            'email'=>'required|email',
+            'mobile'=>'required',
+            'address'=>'required',
+        ]);
         $order = new Order();
         $order->first_name = $request->first_name;
         $order->last_name = $request->last_name;

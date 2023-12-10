@@ -44,13 +44,14 @@
                                                     <td>{{ $unit->status === 1 ? 'Active' : 'Inactive' }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.unit.edit',$unit->unit_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-
+                                                        @if (auth()->user()->id === 1)
                                                         <a href="{{ route('admin.unit.destroy',$unit->unit_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('unitDelete{{ $unit->unit_slug }}').submit();"><i class="fas fa-trash"></i></a>
 
                                                         <form action="{{ route('admin.unit.destroy',$unit->unit_slug) }}" method="post" id="unitDelete{{ $unit->unit_slug }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

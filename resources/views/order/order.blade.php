@@ -57,11 +57,13 @@
                                                             @endforeach
                                                         </ul>
                                                     </td>
+                                                    {{-- @if (auth()->user()->id === 1) --}}
                                                     <td>
                                                         <a href="{{ route('admin.order.orderStatus',$order->status) }}" class="orderStatus btn {{ $order->status == '0' ? 'btn-danger':'btn-success' }}">
                                                             {{ $order->status == '0' ? 'Pending' : 'Delivered' }}
                                                         </a>
                                                     </td>
+                                                    {{-- @endif --}}
                                                     {{-- <td>
                                                         <a href="{{ route('admin.product.edit',$product->product_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
 

@@ -47,6 +47,7 @@
                                                     <td>{{ $subcategory->status === 1 ? 'Active' : 'Inactive' }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.subcategory.edit',$subcategory->subcategory_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+                                                        @if (auth()->user()->id === 1)
 
                                                         <a href="{{ route('admin.subcategory.destroy',$subcategory->subcategory_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('subcategoryDelete{{ $subcategory->subcategory_slug }}').submit();"><i class="fas fa-trash"></i></a>
 
@@ -54,6 +55,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

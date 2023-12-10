@@ -44,19 +44,20 @@
                                                     <td>{{ $category->status === 1 ? 'Active' : 'Inactive' }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.category.edit',$category->category_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-
+                                                        @if (auth()->user()->id === 1)
                                                         <a href="{{ route('admin.category.destroy',$category->category_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('categoryDelete{{ $category->category_slug }}').submit();"><i class="fas fa-trash"></i></a>
 
                                                         <form action="{{ route('admin.category.destroy',$category->category_slug) }}" method="post" id="categoryDelete{{ $category->category_slug }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach
                                             </tbody>
                                         </table>
-                                        {{ $categories->links() }}
+                                        {{-- {{ $categories->links() }} --}}
                                     </div>
                                 </div>
 

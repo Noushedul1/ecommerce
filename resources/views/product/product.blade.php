@@ -60,6 +60,7 @@
                                                         <a href="{{ route('admin.product.show',$product->product_slug) }}" class="btn btn-sm btn-secondary">
                                                             <i class="fas fa-eye"></i>
                                                         </a>
+                                                        @if (auth()->user()->id === 1)
                                                         <a href="{{ route('admin.product.destroy',$product->product_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('productDelete{{ $product->product_slug }}').submit();">
                                                             <i class="fas fa-trash"></i>
                                                         </a>
@@ -67,6 +68,7 @@
                                                             @csrf
                                                             @method('DELETE')
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach

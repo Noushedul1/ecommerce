@@ -13,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        
+
     }
 
     /**
@@ -22,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
-        view()->composer(['front.includes.navbar'], function ($view) {
+        view()->composer('*', function ($view) {
             $view->with('categories',Category::where('status',1)->get());
         });
     }

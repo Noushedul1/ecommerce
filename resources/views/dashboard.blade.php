@@ -3,39 +3,57 @@
     @section('admin_content')
     <div class="page-content fade-in-up">
         <div class="row">
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
                 <div class="ibox bg-success color-white widget-stat">
                     <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">201</h2>
-                        <div class="m-b-5">NEW ORDERS</div><i class="ti-shopping-cart widget-stat-icon"></i>
+                        <h2 class="m-b-5 font-strong">{{ $orderCount }}</h2>
+                        <div class="m-b-5">Order</div><i class="ti-shopping-cart widget-stat-icon"></i>
                         <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="ibox bg-info color-white widget-stat">
-                    <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">1250</h2>
-                        <div class="m-b-5">UNIQUE VIEWS</div><i class="ti-bar-chart widget-stat-icon"></i>
-                        <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
                 <div class="ibox bg-warning color-white widget-stat">
                     <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">$1570</h2>
-                        <div class="m-b-5">TOTAL INCOME</div><i class="fa fa-money widget-stat-icon"></i>
+                        <h2 class="m-b-5 font-strong">{{ $productCount }}</h2>
+                        <div class="m-b-5">TOTAL PRODUCT</div><i class="fa fa-money widget-stat-icon"></i>
                         <div><i class="fa fa-level-up m-r-5"></i><small>22% higher</small></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
+            <div class="col-lg-2 col-md-6">
+                <div class="ibox bg-success color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong">{{ $categoryCount }}</h2>
+                        <div class="m-b-5">NEW CATEGORY</div><i class="ti-shopping-cart widget-stat-icon"></i>
+                        <div><i class="fa fa-level-up m-r-5"></i><small>25% higher</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="ibox bg-info color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong">{{ $subcategoryCount }}</h2>
+                        <div class="m-b-5">SUB CATEGORY</div><i class="ti-bar-chart widget-stat-icon"></i>
+                        <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
                 <div class="ibox bg-danger color-white widget-stat">
                     <div class="ibox-body">
-                        <h2 class="m-b-5 font-strong">108</h2>
-                        <div class="m-b-5">NEW USERS</div><i class="ti-user widget-stat-icon"></i>
+                        <h2 class="m-b-5 font-strong">{{ $brandCount }}</h2>
+                        <div class="m-b-5">Brand</div><i class="ti-user widget-stat-icon"></i>
                         <div><i class="fa fa-level-down m-r-5"></i><small>-12% Lower</small></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-6">
+                <div class="ibox bg-info color-white widget-stat">
+                    <div class="ibox-body">
+                        <h2 class="m-b-5 font-strong">{{ $unitCount }}</h2>
+                        <div class="m-b-5">Unit</div><i class="ti-bar-chart widget-stat-icon"></i>
+                        <div><i class="fa fa-level-up m-r-5"></i><small>17% higher</small></div>
                     </div>
                 </div>
             </div>
@@ -43,32 +61,64 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="ibox">
+                    <div class="ibox-head">
+                        <div class="ibox-title">Latest Orders</div>
+                        <div class="ibox-tools">
+                            <a class="ibox-collapse"><i class="fa fa-minus"></i></a>
+                            <a class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-ellipsis-v"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item">option 1</a>
+                                <a class="dropdown-item">option 2</a>
+                            </div>
+                        </div>
+                    </div>
                     <div class="ibox-body">
-                        <div class="flexbox mb-4">
-                            <div>
-                                <h3 class="m-0">Statistics</h3>
-                                <div>Your shop sales analytics</div>
-                            </div>
-                            <div class="d-inline-flex">
-                                <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
-                                    <div class="text-muted">WEEKLY INCOME</div>
-                                    <div>
-                                        <span class="h2 m-0">$850</span>
-                                        <span class="text-success ml-2"><i class="fa fa-level-up"></i> +25%</span>
-                                    </div>
-                                </div>
-                                <div class="px-3">
-                                    <div class="text-muted">WEEKLY SALES</div>
-                                    <div>
-                                        <span class="h2 m-0">240</span>
-                                        <span class="text-warning ml-2"><i class="fa fa-level-down"></i> -12%</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <canvas id="bar_chart" style="height:260px;"></canvas>
-                        </div>
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Order No</th>
+                                <th>Customer Name</th>
+                                <th>Mobile</th>
+                                <th>Address</th>
+                                <th>Status</th>
+                                <th width="91px">Date</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($orders as $order)
+                                <tr>
+                                    <td><b>{{ $loop->iteration }}</b></td>
+                                    <td><b>{{ $order->first_name }} {{ $order->last_name }}</b></td>
+                                    <td><b>{{  $order->mobile }}</b></td>
+                                    <td><b>{{ $order->city }}, {{  $order->address  }}</b></td>
+                                    {{-- @if (auth()->user()->id === 1) --}}
+                                    <td>
+                                        <a href="{{ route('admin.order.orderStatus',$order->status) }}" class="orderStatus btn {{ $order->status == '0' ? 'btn-danger':'btn-success' }}">
+                                            {{ $order->status == '0' ? 'Pending' : 'Delivered' }}
+                                        </a>
+                                    </td>
+                                    {{-- @endif --}}
+                                    {{-- <td>
+                                        <a href="{{ route('admin.product.edit',$product->product_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
+
+                                        <a href="{{ route('admin.product.show',$product->product_slug) }}" class="btn btn-sm btn-secondary">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('admin.product.destroy',$product->product_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('productDelete{{ $product->product_slug }}').submit();">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                        <form action="{{ route('admin.product.destroy',$product->product_slug) }}" id="productDelete{{ $product->product_slug }}" method="post">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </td> --}}
+                                    <td>
+                                        {{ $order->created_at }}
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -104,101 +154,34 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+             <div class="col-lg-8">
                 <div class="ibox">
-                    <div class="ibox-head">
-                        <div class="ibox-title">Visitors Statistics</div>
-                    </div>
                     <div class="ibox-body">
-                        <div id="world-map" style="height: 300px;"></div>
-                        <table class="table table-striped m-t-20 visitors-table">
-                            <thead>
-                            <tr>
-                                <th>Country</th>
-                                <th>Visits</th>
-                                <th>Data</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/us.png" />USA</td>
-                                <td>755</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" style="width:52%; height:5px;" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="flexbox mb-4">
+                            <div>
+                                <h3 class="m-0">Statistics</h3>
+                                <div>Your shop sales analytics</div>
+                            </div>
+                            <div class="d-inline-flex">
+                                <div class="px-3" style="border-right: 1px solid rgba(0,0,0,.1);">
+                                    <div class="text-muted">WEEKLY INCOME</div>
+                                    <div>
+                                        <span class="h2 m-0">$850</span>
+                                        <span class="text-success ml-2"><i class="fa fa-level-up"></i> +25%</span>
                                     </div>
-                                    <span class="progress-parcent">52%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/Canada.png" />Canada</td>
-                                <td>700</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:48%; height:5px;" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                                <div class="px-3">
+                                    <div class="text-muted">WEEKLY SALES</div>
+                                    <div>
+                                        <span class="h2 m-0">240</span>
+                                        <span class="text-warning ml-2"><i class="fa fa-level-down"></i> -12%</span>
                                     </div>
-                                    <span class="progress-parcent">48%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/India.png" />India</td>
-                                <td>410</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:37%; height:5px;" aria-valuenow="37" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="progress-parcent">37%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/Australia.png" />Australia</td>
-                                <td>304</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width:36%; height:5px;" aria-valuenow="36" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="progress-parcent">36%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/Singapore.png" />Singapore</td>
-                                <td>203</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar" role="progressbar" style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="progress-parcent">35%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/uk.png" />UK</td>
-                                <td>202</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" style="width:35%; height:5px;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="progress-parcent">35%</span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img class="m-r-10" src="{{ asset('/admin-assets') }}/assets/img/flags/UAE.png" />UAE</td>
-                                <td>180</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:30%; height:5px;" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <span class="progress-parcent">30%</span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <canvas id="bar_chart" style="height:260px;"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -509,40 +492,6 @@
                 margin-left: 10px;
             }
         </style>
-        <div>
-            <a class="adminca-banner" href="http://admincast.com/adminca/" target="_blank">
-                <div class="adminca-banner-ribbon"><i class="fa fa-trophy mr-2"></i>PREMIUM TEMPLATE</div>
-                <div class="wrap-1">
-                    <div class="wrap-2">
-                        <div>
-                            <img src="{{ asset('/admin-assets') }}/assets/img/adminca-banner/adminca-preview.jpg" style="height:160px;margin-top:50px;" />
-                        </div>
-                        <div class="color-white" style="margin-left:40px;">
-                            <h1 class="font-bold">ADMINCA</h1>
-                            <p class="font-16">Save your time, choose the best</p>
-                            <ul class="list-unstyled">
-                                <li class="m-b-5"><i class="ti-check m-r-5"></i>High Quality Design</li>
-                                <li class="m-b-5"><i class="ti-check m-r-5"></i>Fully Customizable and Easy Code</li>
-                                <li class="m-b-5"><i class="ti-check m-r-5"></i>Bootstrap 4 and Angular 5+</li>
-                                <li class="m-b-5"><i class="ti-check m-r-5"></i>Best Build Tools: Gulp, SaSS, Pug...</li>
-                                <li><i class="ti-check m-r-5"></i>More layouts, pages, components</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div style="flex:1;">
-                        <div class="d-flex justify-content-end wrap-3">
-                            <div class="adminca-banner-b m-r-20">
-                                <img src="{{ asset('/admin-assets') }}/assets/img/adminca-banner/bootstrap.png" style="width:40px;margin-right:10px;" />Bootstrap v4</div>
-                            <div class="adminca-banner-b m-r-10">
-                                <img src="{{ asset('/admin-assets') }}/assets/img/adminca-banner/angular.png" style="width:35px;margin-right:10px;" />Angular v5+</div>
-                        </div>
-                        <div class="dev-img">
-                            <img src="{{ asset('/admin-assets') }}/assets/img/adminca-banner/sprite.png" />
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
     </div>
     @endsection
 </x-app-layout>

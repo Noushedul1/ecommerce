@@ -49,13 +49,14 @@
                                                     <td>{{ $brand->status === 1 ? 'Active' : 'Inactive' }}</td>
                                                     <td>
                                                         <a href="{{ route('admin.brand.edit',$brand->brand_slug) }}" class="btn btn-sm btn-success"><i class="fas fa-edit"></i></a>
-
+                                                        @if (auth()->user()->id === 1)
                                                         <a href="{{ route('admin.brand.destroy',$brand->brand_slug) }}" class="btn btn-sm btn-danger" onclick="event.preventDefault();document.getElementById('brandDelete{{ $brand->brand_slug }}').submit();"><i class="fas fa-trash"></i></a>
 
                                                         <form action="{{ route('admin.brand.destroy',$brand->brand_slug) }}" method="post" id="brandDelete{{ $brand->brand_slug }}">
                                                         @csrf
                                                         @method('DELETE')
                                                         </form>
+                                                        @endif
                                                     </td>
                                                 </tr>
                                                 @endforeach
