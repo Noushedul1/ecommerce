@@ -29,9 +29,13 @@ class CartController extends Controller
         ]);
         // return Cart::getContent(); // practice
         // return redirect()->back();
-        $notification = array('message'=>'Successfully cart Add','alert-type'=>'success');
-        return redirect()->back()->with($notification);
-        // return json_encode('cart added successfully');
+        // $notification = array('message'=>'Successfully cart Add','alert-type'=>'success');
+        // return redirect()->back()->with($notification);
+        // return json_encode('Cart added successfully');
+        return response()->json([
+            'status'=>200,
+            'cartMsg'=>'Cart added successfully'
+        ]);
     }
     public function cartView() {
         $carts =  Cart::getContent();
@@ -86,5 +90,9 @@ class CartController extends Controller
         Cart::remove($id);
         $notification = array('message'=>'Successfully cart Deleted','alert-type'=>'success');
         return redirect()->back()->with($notification);
+    }
+    public function cartAllClean() {
+        Cart::clear();
+        return redirect()->back();
     }
 }

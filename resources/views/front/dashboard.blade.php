@@ -9,6 +9,9 @@
     @endpush
     @section('front_content')
     <!-- mini cart start -->
+    <h3 class="text-center text-success cartSuccess">
+
+    </h3>
     <div class="sidebar-cart-active">
         <div class="sidebar-cart-all">
             <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
@@ -684,6 +687,7 @@
                         $('#modalOldPrice').text('BDT '+res.regular_price);
                         $('#modalNewPrice').text('BDT '+res.selling_price);
                         $('#modalShortDescription').text(res.short_description);
+                        $('.addToCart').val(res.id);
                         $('#modalName').text(res.name);
                     },
                     error: function(err) {
@@ -702,7 +706,9 @@
                     dataType:"JSON",
                     data: {product_id:productId,qty:qty},
                     success: function(data) {
-                        console.log(data);
+                        if(data.status = '200'){
+                            $('.cartSuccess').text(data.cartMsg);
+                        }
                     }
                 });
             });

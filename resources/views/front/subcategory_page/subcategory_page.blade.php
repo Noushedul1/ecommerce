@@ -94,7 +94,7 @@
                                                 </div>
                                                 <div class="product-action-wrap">
                                                     <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                    <button class="product-action-btn-1" id="showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button class="product-action-btn-1 showModal" id="showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="pe-7s-look"></i>
                                                     </button>
                                                 </div>
@@ -131,6 +131,29 @@
     @push('front_script')
     <script>
         $(document).ready(function(){
+            $(document).on('click','.showModal',function(){
+                var productId = $(this).data('id');
+                // alert(productId);
+                var baseUrl = {!! json_encode(url('/')) !!} ;
+                // alert(baseUrl);
+                $.ajax({
+                    method: "GET",
+                    url: "/get-product-info-for-modal",
+                    dataType: "JSON",
+                    data: {id:productId},
+                    success: function(res) {
+                        console.log(res);
+                        $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
+                        $('#modalOldPrice').text('BDT '+res.regular_price);
+                        $('#modalNewPrice').text('BDT '+res.selling_price);
+                        $('#modalShortDescription').text(res.short_description);
+                        $('#modalName').text(res.name);
+                    },
+                    error: function(err) {
+                        console.log(err);
+                    }
+                });
+            });
             $(document).on('click','.addToCart',function(){
                 var productId = $(this).data('id');
                 var qty = $(this).data('qty');

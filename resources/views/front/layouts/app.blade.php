@@ -52,7 +52,7 @@
                                             <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
                                         </div>
                                         <div class="single-product-cart btn-hover">
-                                            <a href="#">Add to cart</a>
+                                            <button class="addToCart btn btn-outline-success" data-qty="1" value="">Add to cart</button>
                                         </div>
                                         <div class="single-product-wishlist">
                                             <a title="Wishlist" href="#"><i class="pe-7s-like"></i></a>
@@ -175,6 +175,47 @@
         </div>
     </div>
     <!-- All JS is here -->
+    @push('front_script')
+    <script>
+        $(document).ready(function(){
+            var CartPlusMinus = $('.product-quality');
+
+            CartPlusMinus.prepend('<a class="dec qtybutton">-</a>');
+            CartPlusMinus.append('<a class="inc qtybutton">+</a>');
+            $(".qtybutton").on("click", function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() === "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            $button.parent().find("input").val(newVal);
+            });
+
+            $(document).on('click','.addToCart',function(){
+                var $productId = $('.addToCart').val();
+                var $qty = $(this).data('qty');
+                $.ajax({
+                    method: "POST",
+                    url: '/add-to-cart',
+                    dataType: "JSON",
+                    data: {product_id:$productId,qty:$qty},
+                    success: function(data) {
+                        if(data.status = '200'){
+                            $('.cartSuccess').text(data.cartMsg);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    @endpush
     @include('front.includes.script')
 </body>
 

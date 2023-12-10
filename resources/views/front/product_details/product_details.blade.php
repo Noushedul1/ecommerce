@@ -3,6 +3,7 @@
     @section('front_content')
     <div class="main-wrapper main-wrapper-2">
         <!-- mini cart start -->
+        <h4 class="text-center text-success cartSuccess"></h4>
     <div class="sidebar-cart-active">
         <div class="sidebar-cart-all">
             <a class="cart-close" href="#"><i class="pe-7s-close"></i></a>
@@ -613,7 +614,9 @@
                     dataType: "JSON",
                     data: {product_id:$productId,qty:$qty},
                     success: function(data) {
-                        console.log(data);
+                        if(data.status = '200'){
+                            $('.cartSuccess').text(data.cartMsg);
+                        }
                     }
                 });
             });

@@ -22,4 +22,14 @@ class OrderController extends Controller
         $pdf = Pdf::loadView('pdf.order', $data);
         return $pdf->download('order.pdf');
     }
+    public function orderStatus($id) {
+        $order = Order::where('status',$id)->first();
+        if($order->status == 0) {
+            $order->status = 1;
+        }else{
+            $order->status = 0;
+        }
+        $order->save();
+        return redirect()->back();
+    }
 }

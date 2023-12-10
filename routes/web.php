@@ -72,6 +72,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
     Route::controller(OrderController::class)->prefix('order')->name('order.')->group(function(){
         Route::get('/index','index')->name('index');
         Route::get('/download_Pdf','downloadPdf')->name('downloadpdf');
+        Route::get('/order_status/{id}','orderStatus')->name('orderStatus');
     });
 });
 
@@ -94,6 +95,7 @@ Route::controller(CartController::class)->group(function(){
     Route::get('/checkoutIndex','checkoutIndex')->name('checkout_Index');
     Route::post('/checkout','checkout')->name('checkout');
     Route::get('/revome-product-from-cart/{id}','removeProductCart')->name('remove_product_cart');
+    Route::get('/cart_all_clean','cartAllClean')->name('cartAllClean');
 });
 
 Route::middleware('auth')->group(function () {

@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Front;
 
+use Cart;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Subcategory;
 use Illuminate\Http\Request;
+use App\Models\Front\Orderitem;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Cart;
 
 class FrontController extends Controller
 {
@@ -16,6 +18,19 @@ class FrontController extends Controller
         $products = Product::where('status',1)->get();
         $hotProducts = Product::orderBy('hit_count','DESC')->where('hit_count','>','5')->where('status',1)->get();
         $bestSellingProducts = Product::orderBy('sells_count','DESC')->where('sells_count','>','0')->where('status',1)->get();
+
+        // $bsells = DB::table('products')
+        // ->join('orderitems','products.id','=','orderitems.product_id')
+        // ->selectRaw('product.id','orderitems.quantity as total')
+        // ->groupBy('product_id')
+        // ->orderBy('total','DESC')
+        // ->get();
+        // $bestSells = [];
+        // foreach($bsells as $s) {
+        //     $p = Product::findOrFail($s->product_id);
+        //     $bestSells[] = $p;
+        // }
+        // return $bestSells;
         return view('front.dashboard',compact('products','hotProducts','bestSellingProducts','carts'));
     }
     public function productDetails($id) {

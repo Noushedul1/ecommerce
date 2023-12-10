@@ -58,7 +58,7 @@
                                                         </ul>
                                                     </td>
                                                     <td>
-                                                        <a href="" class="orderStatus btn {{ $order->status == '0' ? 'btn-danger':'btn-success' }}">
+                                                        <a href="{{ route('admin.order.orderStatus',$order->status) }}" class="orderStatus btn {{ $order->status == '0' ? 'btn-danger':'btn-success' }}">
                                                             {{ $order->status == '0' ? 'Pending' : 'Delivered' }}
                                                         </a>
                                                     </td>

@@ -118,10 +118,10 @@
                                     </div>
                                     <div class="cart-clear-wrap">
                                         <div class="cart-clear btn-hover">
-                                            <button>Update Cart</button>
+                                            {{-- <button>Update Cart</button> --}}
                                         </div>
                                         <div class="cart-clear btn-hover">
-                                            <a href="#">Clear Cart</a>
+                                            <a href="{{ route('cartAllClean') }}">Clear Cart</a>
                                         </div>
                                     </div>
                                 </div>
