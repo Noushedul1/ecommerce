@@ -23,7 +23,6 @@
     <link rel="icon" href="{{ asset('/front') }}/assets/images/favicon/cropped-favicon-192x192.png" sizes="192x192" />
     <link rel="apple-touch-icon" href="{{ asset('/front') }}/assets/images/favicon/cropped-favicon-180x180.png" />
     <meta name="msapplication-TileImage" content="{{ asset('/front') }}/assets/images/favicon/cropped-favicon-270x270.png" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- All CSS is here
 	============================================ -->
@@ -41,10 +40,5 @@
     <link rel="stylesheet" href="{{ asset('/front') }}/assets/css/plugins/easyzoom.css" />
     <link rel="stylesheet" href="{{ asset('/front') }}/assets/css/plugins/slinky.css" />
     <link rel="stylesheet" href="{{ asset('/front') }}/assets/css/style.css" />
-    <style>
-        .toast-success{
-            color: green;
-        }
-    </style>
     @stack('front_link')
 </head>

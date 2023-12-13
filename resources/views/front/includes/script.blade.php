@@ -22,24 +22,6 @@
     <script src="{{ asset('/front') }}/assets/js/plugins/ajax-mail.js"></script>
     <!-- Main JS -->
     <script src="{{ asset('/front') }}/assets/js/main.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript">
-
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','success') }}";
-        switch (type) {
-            case 'success':
-                toastr.options = {
-                    'progressBar': true,
-                    'closeBar': true
-                }
-                toastr.success("{{ Session::get('message') }}","Success",{
-                    timeOut: 5200
-                });
-                break;
-        }
-        @endif
-    </script>
     <script>
         $.ajaxSetup({
             headers: {

@@ -16,9 +16,14 @@ class FrontController extends Controller
     public function index(){
         $carts = Cart::getContent();
         $products = Product::where('status',1)->get();
-        $hotProducts = Product::orderBy('hit_count','DESC')->where('hit_count','>','5')->where('status',1)->get();
+        $hotProducts = Product::orderBy('hit_count','DESC')->where('hit_count','>','0')->where('status',1)->get();
+        $highHitCountProduct = Product::orderBy('hit_count','DESC')->where('status',1)->first();
         $bestSellingProducts = Product::orderBy('sells_count','DESC')->where('sells_count','>','0')->where('status',1)->get();
-
+        $furnitures = Product::where('category_id',4)->where('status',1)->get();
+        $highpriceProduct = Product::orderBy('selling_price','DESC')->where('status',1)->first();
+        $lowpriceProduct = Product::orderBy('selling_price','ASC')->where('status',1)->first();
+        // return $lowpriceProduct;
+        // return $furnitures;
         // $bsells = DB::table('products')
         // ->join('orderitems','products.id','=','orderitems.product_id')
         // ->selectRaw('product.id','orderitems.quantity as total')
@@ -31,7 +36,7 @@ class FrontController extends Controller
         //     $bestSells[] = $p;
         // }
         // return $bestSells;
-        return view('front.dashboard',compact('products','hotProducts','bestSellingProducts','carts'));
+        return view('front.dashboard',compact('products','hotProducts','bestSellingProducts','carts','highpriceProduct','lowpriceProduct','furnitures','highHitCountProduct'));
     }
     public function productDetails($id) {
         $carts = Cart::getContent();

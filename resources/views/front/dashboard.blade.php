@@ -1,11 +1,7 @@
 <x-front-layout>
     @section('front_title','Home')
     @push('front_link')
-    <style>
-        .toast-success{
-            color: green;
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     @endpush
     @section('front_content')
     <!-- mini cart start -->
@@ -55,9 +51,9 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="slider-content-1 slider-animated-1">
                                         <h3 class="animated">new arrival</h3>
-                                        <h1 class="animated">Summer <br>Collection</h1>
+                                        <h1 class="animated">Best <br>Product</h1>
                                         <div class="slider-btn btn-hover">
-                                            <a href="product-details.html" class="btn animated">
+                                            <a href="" class="addToCart btn animated" data-id="{{ $highpriceProduct->id }}" data-qty="1">
                                                 Shop Now <i class=" ti-arrow-right "></i>
                                             </a>
                                         </div>
@@ -65,7 +61,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="hero-slider-img-1 slider-animated-1">
-                                        <img class="animated animated-slider-img-1" src="{{ asset('/front') }}/assets/images/slider/slider-img-1.png" alt="">
+                                        <img class="animated animated-slider-img-1" src="{{ asset("admin/images/product_images/".$highpriceProduct->image) }}" alt="">
                                         <div class="product-offer animated">
                                             <h5>30% <span>Off</span></h5>
                                         </div>
@@ -84,7 +80,7 @@
                                         <h3 class="animated">new arrival</h3>
                                         <h1 class="animated">Summer <br>Collection</h1>
                                         <div class="slider-btn btn-hover">
-                                            <a href="product-details.html" class="btn animated">
+                                            <a href="{{ route('addTo_cart') }}" class="btn animated">
                                                 Shop Now <i class=" ti-arrow-right "></i>
                                             </a>
                                         </div>
@@ -92,7 +88,7 @@
                                 </div>
                                 <div class="col-lg-6 col-md-6">
                                     <div class="hero-slider-img-1 slider-animated-1">
-                                        <img class="animated animated-slider-img-1" src="{{ asset('/front') }}/assets/images/slider/slider-img-1-2.png" alt="">
+                                        <img class="animated animated-slider-img-1" src="{{ asset("admin/images/roduct_images/".$highpriceProduct->image) }}" alt="">
                                         <div class="product-offer animated">
                                             <h5>30% <span>Off</span></h5>
                                         </div>
@@ -102,50 +98,28 @@
                         </div>
                     </div>
                 </div>
-                <div class="home-slider-prev main-slider-nav"><i class="fa fa-angle-left"></i></div>
-                <div class="home-slider-next main-slider-nav"><i class="fa fa-angle-right"></i></div>
+                {{-- <div class="home-slider-prev main-slider-nav"><i class="fa fa-angle-left"></i></div>
+                <div class="home-slider-next main-slider-nav"><i class="fa fa-angle-right"></i></div> --}}
             </div>
         </div>
     </div>
     <div class="banner-area pt-100 pb-70">
         <div class="container">
             <div class="row">
+                @foreach ($furnitures as $furniture)
                 <div class="col-lg-4 col-md-6 col-12">
                     <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                        <a href="product-details.html"><img src="{{ asset('/front') }}/assets/images/banner/banner-1.png" alt=""></a>
+                        <a href="product-details.html"><img src="{{ asset("admin/images/product_images/".$furniture->image) }}" alt=""></a>
                         <div class="banner-content-1">
                             <h5>new arrival</h5>
-                            <h3>Office Chair</h3>
+                            <h3>{{ $furniture->name }}</h3>
                             <div class="banner-btn">
-                                <a href="product-details.html">Shop Now</a>
+                                <a href="" class="addToCart" data-id="{{ $furniture->id }}" data-qty="1">Shop Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="400">
-                        <a href="product-details.html"><img src="{{ asset('/front') }}/assets/images/banner/banner-2.png" alt=""></a>
-                        <div class="banner-content-1">
-                            <h5>new arrival</h5>
-                            <h3>Hanging Chair</h3>
-                            <div class="banner-btn">
-                                <a href="product-details.html">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="600">
-                        <a href="product-details.html"><img src="{{ asset('/front') }}/assets/images/banner/banner-3.png" alt=""></a>
-                        <div class="banner-content-1">
-                            <h5>new arrival</h5>
-                            <h3>Folding Chair</h3>
-                            <div class="banner-btn">
-                                <a href="product-details.html">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -205,13 +179,13 @@
             <div class="row">
                 <div class="col-lg-7 col-md-7">
                     <div class="banner-wrap mb-30" data-aos="fade-up" data-aos-delay="200">
-                        <a href="product-details.html"><img src="{{ asset('/front') }}/assets/images/banner/banner-4.png" alt=""></a>
+                        <a href="product-details.html"><img src="{{ asset('admin/images/product_images/'.$lowpriceProduct->image) }}" alt="" height="300"></a>
                         <div class="banner-content-2">
                             <span>Sale 30%</span>
-                            <h2>New Furniture</h2>
+                            <h2>{{ $lowpriceProduct->name }}</h2>
                             <p>Lorem ipsum dolor sit amet consecte adipisicing elit sed do</p>
                             <div class="btn-style-2 btn-hover">
-                                <a href="product-details.html" class="btn">
+                                <a href="" class="btn addToCart" data-id="{{ $lowpriceProduct->id }}" data-qty="1">
                                     Shop Now
                                 </a>
                             </div>
@@ -284,14 +258,14 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="home-single-product-img" data-aos="fade-up" data-aos-delay="200">
-                        <a href="product-details.html"><img src="{{ asset('/front') }}/assets/images/product/single-product.png" alt=""></a>
+                        <a href="product-details.html"><img src="{{ asset("admin/images/product_images/".$highHitCountProduct->image) }}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="home-single-product-content">
-                        <h2 data-aos="fade-up" data-aos-delay="200">Modern Chair</h2>
-                        <h3 data-aos="fade-up" data-aos-delay="400">$20.25</h3>
-                        <p data-aos="fade-up" data-aos-delay="600">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempo incididunt ut labore et dolore mt aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
+                        <h2 data-aos="fade-up" data-aos-delay="200">{{ $highHitCountProduct->name }}</h2>
+                        <h3 data-aos="fade-up" data-aos-delay="400">BDT {{ $highHitCountProduct->selling_price }}</h3>
+                        <p data-aos="fade-up" data-aos-delay="600">{!! $highHitCountProduct->short_description !!}</p>
                         <div class="product-color" data-aos="fade-up" data-aos-delay="800">
                             <span>Color :</span>
                             <ul>
@@ -301,11 +275,11 @@
                             </ul>
                         </div>
                         <div class="product-details-action-wrap" data-aos="fade-up" data-aos-delay="1000">
-                            <div class="product-quality">
+                            {{-- <div class="product-quality">
                                 <input class="cart-plus-minus-box input-text qty text" name="qtybutton" value="1">
-                            </div>
+                            </div> --}}
                             <div class="single-product-cart btn-hover">
-                                <a href="#">Add to cart</a>
+                                <a href="" class="addToCart" data-id="{{ $highHitCountProduct->id }}" data-qty="1">Add to cart</a>
                             </div>
                             <div class="single-product-wishlist">
                                 <a title="Wishlist" href="wishlist.html"><i class="pe-7s-like"></i></a>
@@ -669,9 +643,52 @@
         </div>
     </div>
     @push('front_script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        @if (Session::has('cartAdd'))
+        toastr.options = {
+            'progressBar': true,
+            'closeBar': true
+        }
+        toastr.success("{{ Session::get('cartAdd') }}","Success",{timeOut: 1500});
+        @endif
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','success') }}";
+        switch (type) {
+            case 'success':
+                toastr.options = {
+                    'progressBar': true,
+                    'closeBar': true
+                }
+                toastr.success("{{ Session::get('message') }}","Success",{
+                    timeOut: 1500
+                });
+                break;
+        }
+        @endif
+    </script>
     <script>
         $(document).ready(function(){
-            $(document).on('click','.showModal',function(){
+            var CartPlusMinus = $('.product-quality');
+
+            CartPlusMinus.prepend('<a class="dec qtybutton">-</a>');
+            CartPlusMinus.append('<a class="inc qtybutton">+</a>');
+            $(".qtybutton").on("click", function() {
+            var $button = $(this);
+            var oldValue = $button.parent().find("input").val();
+            if ($button.text() === "+") {
+                var newVal = parseFloat(oldValue) + 1;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            $button.parent().find("input").val(newVal);
+        });
+        $(document).on('click','.showModal',function(){
                 var productId = $(this).data('id');
                 // alert(productId);
                 var baseUrl = {!! json_encode(url('/')) !!} ;
@@ -686,7 +703,7 @@
                         $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
                         $('#modalOldPrice').text('BDT '+res.regular_price);
                         $('#modalNewPrice').text('BDT '+res.selling_price);
-                        $('#modalShortDescription').text(res.short_description);
+                        // $('#modalShortDescription').text(res.short_description);
                         $('.addToCart').val(res.id);
                         $('#modalName').text(res.name);
                     },
@@ -694,8 +711,8 @@
                         console.log(err);
                     }
                 });
-            });
-            $(document).on('click','.addToCart',function(){
+        });
+        $(document).on('click','.addToCart',function(){
                 var productId = $(this).data('id');
                 var qty = $(this).data('qty');
 
@@ -707,7 +724,8 @@
                     data: {product_id:productId,qty:qty},
                     success: function(data) {
                         if(data.status = '200'){
-                            $('.cartSuccess').text(data.cartMsg);
+                            console.log('okasdfasdf');
+                            $('.cartSuccess').text(data.cartAdd);
                         }
                     }
                 });

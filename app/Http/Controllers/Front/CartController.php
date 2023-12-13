@@ -34,7 +34,7 @@ class CartController extends Controller
         // return json_encode('Cart added successfully');
         return response()->json([
             'status'=>200,
-            'cartMsg'=>'Cart added successfully'
+            'cartAdd'=>'Cart added successfully'
         ]);
     }
     public function cartView() {
@@ -99,6 +99,7 @@ class CartController extends Controller
     }
     public function cartAllClean() {
         Cart::clear();
-        return redirect()->back();
+        $notification = array('message'=>'Successfully cart Clear','alert-type'=>'success');
+        return redirect()->back()->with($notification);
     }
 }

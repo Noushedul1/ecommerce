@@ -1,5 +1,8 @@
 <x-front-layout>
     @section('front_title','Category Page')
+    @push('front_link')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @endpush
     @section('front_content')
     <!-- mini cart start -->
     <div class="sidebar-cart-active">
@@ -94,7 +97,7 @@
                                                 </div>
                                                 <div class="product-action-wrap">
                                                     <button class="product-action-btn-1" title="Wishlist"><i class="pe-7s-like"></i></button>
-                                                    <button class="product-action-btn-1 showModal" id="showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                                    <button class="product-action-btn-1 showModal" data-id="{{ $product->id }}" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                                         <i class="pe-7s-look"></i>
                                                     </button>
                                                 </div>
@@ -130,6 +133,23 @@
         </div>
     </div>
     @push('front_script')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        @if(Session::has('message'))
+        var type = "{{ Session::get('alert-type','success') }}";
+        switch (type) {
+            case 'success':
+                toastr.options = {
+                    'progressBar': true,
+                    'closeBar': true
+                }
+                toastr.success("{{ Session::get('message') }}","Success",{
+                    timeOut: 1500
+                });
+                break;
+        }
+        @endif
+    </script>
     <script>
         $(document).ready(function(){
             $(document).on('click','.showModal',function(){
@@ -147,7 +167,7 @@
                         $('#modalImage').attr('src',baseUrl+'/admin/images/product_images/'+res.image);
                         $('#modalOldPrice').text('BDT '+res.regular_price);
                         $('#modalNewPrice').text('BDT '+res.selling_price);
-                        $('#modalShortDescription').text(res.short_description);
+                        // $('#modalShortDescription').text(res.short_description);
                         $('#modalName').text(res.name);
                     },
                     error: function(err) {
@@ -162,9 +182,12 @@
                     method: "POST",
                     url: "/add-to-cart",
                     dataType: "JSON",
-                    data: {product_id: productId,qty: qty},
+                    data: {product_id:productId,qty:qty},
                     success: function(data) {
-                        console.log(data);
+                        if(data.status = '200'){
+                            console.log('okasdfasdf');
+                            $('.cartSuccess').text(data.cartAdd);
+                        }
                     }
                 });
             });
